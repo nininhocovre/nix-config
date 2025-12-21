@@ -12,17 +12,31 @@
     tmp.cleanOnBoot = true;
     kernelPackages = pkgs.linuxPackages_latest; # _latest, _zen, _xanmod_latest, _hardened, _rt, _OTHER_CHANNEL, etc.
     kernelParams = [
-      "preempt=full" # lower latency but less throughput
+      "pcie_aspm=off"
     ];
     loader = {
-      efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/boot";
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
       timeout = null; # Display bootloader indefinitely until user selects OS
       grub = {
         enable = true;
         device = "nodev";
         efiSupport = true;
         useOSProber = true;
+        extraEntries =
+          ''
+          menuentry "Arch Linux" {
+            insmod all_video
+            set gfxpayload=keep
+            search --no-floppy --fs-uuid  --set=root 231D-E6D2
+            echo 'Loading Kernel: vmlinuz-linux ...'
+            linux "/vmlinuz-linux" root=UUID=78286f55-15cc-4a2e-9300-ff846f6ae48c zswap.enabled=0 rootfstype=btrfs pcie_aspm=off loglevel=3  rootflags=rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,autodefrag,subvol="@"
+            echo 'Loading Initramfs: initramfs-linux.img ...'
+            initrd "/initramfs-linux.img"
+          }
+          '';
         gfxmodeEfi = "2715x1527"; # for 4k: 3840x2160
         gfxmodeBios = "2715x1527"; # for 4k: 3840x2160
         theme = pkgs.stdenv.mkDerivation {
@@ -39,13 +53,13 @@
       };
     };
     # Appimage Support
-    binfmt.registrations.appimage = {
-      wrapInterpreterInShell = false;
-      interpreter = "${pkgs.appimage-run}/bin/appimage-run";
-      recognitionType = "magic";
-      offset = 0;
-      mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
-      magicOrExtension = ''\x7fELF....AI\x02'';
-    };
+#     binfmt.registrations.appimage = {
+#       wrapInterpreterInShell = false;
+#       interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+#       recognitionType = "magic";
+#       offset = 0;
+#       mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
+#       magicOrExtension = ''\x7fELF....AI\x02'';
+#     };
   };
 }

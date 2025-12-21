@@ -158,22 +158,22 @@ cleanup() {
   info "Cleaning up..."
 
   # Unmount everything
-  if [ -n "$home_mapped_device" ]; then
-    umount /mnt/home 2>/dev/null || true
-    if [ "$home_encrypted" = "yes" ]; then
-      cryptsetup luksClose luks-home 2>/dev/null || true
-    fi
-  fi
-
-  umount -R /mnt 2>/dev/null || true
-
-  if [ -n "$part_swap" ]; then
-    swapoff "/dev/$part_swap" 2>/dev/null || true
-  fi
-
-  if [ "$luks_enabled" = "yes" ]; then
-    cryptsetup luksClose luks-root 2>/dev/null || true
-  fi
+#   if [ -n "$home_mapped_device" ]; then
+#     umount /mnt/home 2>/dev/null || true
+#     if [ "$home_encrypted" = "yes" ]; then
+#       cryptsetup luksClose luks-home 2>/dev/null || true
+#     fi
+#   fi
+#
+#   umount -R /mnt 2>/dev/null || true
+#
+#   if [ -n "$part_swap" ]; then
+#     swapoff "/dev/$part_swap" 2>/dev/null || true
+#   fi
+#
+#   if [ "$luks_enabled" = "yes" ]; then
+#     cryptsetup luksClose luks-root 2>/dev/null || true
+#   fi
 
   echo "Cleanup complete."
 }
@@ -735,17 +735,17 @@ if [ "$partitioning" = "manual" ] && [ -n "$part_home" ]; then
         fi
 
         echo "Formatting home partition with $filesystem"
-        if [ "$filesystem" = "ext4" ]; then
-          mkfs.ext4 -F "$home_mapped_device" || {
-            error "Failed to format home partition."
-            exit 1
-          }
-        elif [ "$filesystem" = "btrfs" ]; then
-          mkfs.btrfs -f "$home_mapped_device" || {
-            error "Failed to format home partition."
-            exit 1
-          }
-        fi
+#         if [ "$filesystem" = "ext4" ]; then
+#           mkfs.ext4 -F "$home_mapped_device" || {
+#             error "Failed to format home partition."
+#             exit 1
+#           }
+#         elif [ "$filesystem" = "btrfs" ]; then
+#           mkfs.btrfs -f "$home_mapped_device" || {
+#             error "Failed to format home partition."
+#             exit 1
+#           }
+#         fi
       fi
     else
       echo "Home partition has no filesystem."
@@ -821,17 +821,17 @@ if [ "$partitioning" = "manual" ] && [ -n "$part_home" ]; then
       fi
 
       echo "Formatting home partition with $filesystem"
-      if [ "$filesystem" = "ext4" ]; then
-        mkfs.ext4 -F "$home_mapped_device" || {
-          error "Failed to format home partition."
-          exit 1
-        }
-      elif [ "$filesystem" = "btrfs" ]; then
-        mkfs.btrfs -f "$home_mapped_device" || {
-          error "Failed to format home partition."
-          exit 1
-        }
-      fi
+#       if [ "$filesystem" = "ext4" ]; then
+#         mkfs.ext4 -F "$home_mapped_device" || {
+#           error "Failed to format home partition."
+#           exit 1
+#         }
+#       elif [ "$filesystem" = "btrfs" ]; then
+#         mkfs.btrfs -f "$home_mapped_device" || {
+#           error "Failed to format home partition."
+#           exit 1
+#         }
+#       fi
     fi
   fi
 fi
@@ -840,63 +840,63 @@ fi
 info "Formatting partitions..."
 
 echo "Formatting EFI partition..."
-mkfs.fat -F32 "/dev/$part_boot" || {
-  error "Failed to format EFI partition."
-  exit 1
-}
+# mkfs.fat -F32 "/dev/$part_boot" || {
+#   error "Failed to format EFI partition."
+#   exit 1
+# }
 
 echo "Formatting root partition with $filesystem..."
-if [ "$filesystem" = "ext4" ]; then
-  mkfs.ext4 -F "$root_device" || {
-    error "Failed to format root partition."
-    exit 1
-  }
-elif [ "$filesystem" = "btrfs" ]; then
-  mkfs.btrfs -f "$root_device" || {
-    error "Failed to format root partition."
-    exit 1
-  }
-fi
+# if [ "$filesystem" = "ext4" ]; then
+#   mkfs.ext4 -F "$root_device" || {
+#     error "Failed to format root partition."
+#     exit 1
+#   }
+# elif [ "$filesystem" = "btrfs" ]; then
+#   mkfs.btrfs -f "$root_device" || {
+#     error "Failed to format root partition."
+#     exit 1
+#   }
+# fi
 
-if [ -n "$part_swap" ]; then
-  echo "Setting up swap partition..."
-  mkswap "/dev/$part_swap" || {
-    warn "Failed to format swap partition. Continuing without swap."
-    part_swap=""
-  }
-fi
+# if [ -n "$part_swap" ]; then
+#   echo "Setting up swap partition..."
+#   mkswap "/dev/$part_swap" || {
+#     warn "Failed to format swap partition. Continuing without swap."
+#     part_swap=""
+#   }
+# fi
 
 # Mount filesystems
 info "Mounting filesystems..."
 
 echo "Mounting root partition..."
-mount "$root_device" /mnt || {
-  error "Failed to mount root partition."
-  exit 1
-}
-
-echo "Creating and mounting boot partition..."
-mkdir -p /mnt/boot
-mount "/dev/$part_boot" /mnt/boot || {
-  error "Failed to mount boot partition."
-  exit 1
-}
-
-if [ -n "$home_mapped_device" ]; then
-  echo "Creating and mounting home partition..."
-  mkdir -p /mnt/home
-  mount "$home_mapped_device" /mnt/home || {
-    warn "Failed to mount home partition. Continuing without separate home."
-    home_mapped_device=""
-  }
-fi
-
-if [ -n "$part_swap" ]; then
-  echo "Activating swap..."
-  swapon "/dev/$part_swap" || {
-    warn "Failed to activate swap. Continuing without swap."
-  }
-fi
+# mount "$root_device" /mnt || {
+#   error "Failed to mount root partition."
+#   exit 1
+# }
+#
+# echo "Creating and mounting boot partition..."
+# mkdir -p /mnt/boot
+# mount "/dev/$part_boot" /mnt/boot || {
+#   error "Failed to mount boot partition."
+#   exit 1
+# }
+#
+# if [ -n "$home_mapped_device" ]; then
+#   echo "Creating and mounting home partition..."
+#   mkdir -p /mnt/home
+#   mount "$home_mapped_device" /mnt/home || {
+#     warn "Failed to mount home partition. Continuing without separate home."
+#     home_mapped_device=""
+#   }
+# fi
+#
+# if [ -n "$part_swap" ]; then
+#   echo "Activating swap..."
+#   swapon "/dev/$part_swap" || {
+#     warn "Failed to activate swap. Continuing without swap."
+#   }
+# fi
 
 echo "All filesystems mounted successfully."
 
