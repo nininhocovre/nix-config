@@ -52,11 +52,11 @@ in
   };
   nixpkgs.config = {
     nvidia.acceptLicense = true;
-    cudaSupport = true;
+    #cudaSupport = true;
     allowUnfreePredicate =
       pkg:
       builtins.elem (lib.getName pkg) [
-        "cudatoolkit"
+        #"cudatoolkit"
         "nvidia-persistenced"
         "nvidia-settings"
         "nvidia-x11"
