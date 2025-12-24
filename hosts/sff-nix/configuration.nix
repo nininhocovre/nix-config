@@ -14,18 +14,18 @@ in
     ../../modules/core/boot.nix
     ../../modules/core/bash.nix
     ../../modules/core/zsh.nix
-    ../../modules/core/starship.nix
+    #../../modules/core/starship.nix
     ../../modules/core/fonts.nix
     ../../modules/core/hardware.nix
     ../../modules/core/network.nix
-    ../../modules/core/dns.nix
-    ../../modules/core/nh.nix
+    #../../modules/core/dns.nix
+    #../../modules/core/nh.nix
     ../../modules/core/packages.nix
     ../../modules/core/printing.nix
     ../../modules/core/sddm.nix
     ../../modules/core/security.nix
     ../../modules/core/services.nix
-    ../../modules/core/syncthing.nix
+    #../../modules/core/syncthing.nix
     ../../modules/core/system.nix
     ../../modules/core/users.nix
     # ../../modules/core/flatpak.nix
