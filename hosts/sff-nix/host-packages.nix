@@ -6,5 +6,7 @@
     #protonvpn-gui # VPN
     #github-desktop
     # pokego # Overlayed
+    vivaldi
+    vivaldi-ffmpeg-codecs
   ];
 }
