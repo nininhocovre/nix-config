@@ -14,7 +14,7 @@ in
     ../../modules/core/boot.nix
     ../../modules/core/bash.nix
     ../../modules/core/zsh.nix
-    #../../modules/core/starship.nix
+    ../../modules/core/starship.nix
     ../../modules/core/fonts.nix
     ../../modules/core/hardware.nix
     ../../modules/core/network.nix

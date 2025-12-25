@@ -8,5 +8,13 @@
     # pokego # Overlayed
     vivaldi
     vivaldi-ffmpeg-codecs
+    oscar
+    doublecmd
+    nextcloud-client
+    enpass
+    digikam
+    freecad
+    orca-slicer
+    sparrow
   ];
 }
