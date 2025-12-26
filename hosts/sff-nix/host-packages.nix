@@ -16,5 +16,7 @@
     freecad
     orca-slicer
     sparrow
+    coolercontrol.coolercontrold
+    coolercontrol.coolercontrol-gui
   ];
 }

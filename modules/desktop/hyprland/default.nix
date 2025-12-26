@@ -25,6 +25,7 @@ in
     ./programs/hyprlock
     ./programs/swaync
     # ./programs/dunst
+    ./programs/noctalia
   ];
 
   nix.settings = {
@@ -125,7 +126,7 @@ in
               "$term" = "${getExe pkgs.${terminal}}";
               "$editor" = "code --disable-gpu";
               "$fileManager" = "$term --class \"tuiFileManager\" -e ${tuiFileManager}";
-              "$browser" = browser;
+              "$browser" = "vivaldi";
 
               env = [
                 "XDG_CURRENT_DESKTOP,Hyprland"
@@ -170,6 +171,11 @@ in
                   # "${./scripts/autowaybar.sh}" # uncomment packages at the top
                   "polkit-agent-helper-1"
                   "pamixer --set-volume 50"
+                  "nextcloud --background"
+                  "steam -silent"
+                  "heroic"
+                  "coolercontrold"
+                  "Enpass -minimize"
                 ];
               input = {
                 kb_layout = "${kbdLayout},ru";
@@ -387,16 +393,16 @@ in
               ];
               binde = [
                 # Resize windows
-                "$mainMod SHIFT, right, resizeactive, 30 0"
-                "$mainMod SHIFT, left, resizeactive, -30 0"
-                "$mainMod SHIFT, up, resizeactive, 0 -30"
-                "$mainMod SHIFT, down, resizeactive, 0 30"
+                "$mainMod SHIFT, right, resizeactive, 100 0"
+                "$mainMod SHIFT, left, resizeactive, -100 0"
+                "$mainMod SHIFT, up, resizeactive, 0 -100"
+                "$mainMod SHIFT, down, resizeactive, 0 100"
 
                 # Resize windows with hjkl keys
-                "$mainMod SHIFT, l, resizeactive, 30 0"
-                "$mainMod SHIFT, h, resizeactive, -30 0"
-                "$mainMod SHIFT, k, resizeactive, 0 -30"
-                "$mainMod SHIFT, j, resizeactive, 0 30"
+                #"$mainMod SHIFT, l, resizeactive, 30 0"
+                #"$mainMod SHIFT, h, resizeactive, -30 0"
+                #"$mainMod SHIFT, k, resizeactive, 0 -30"
+                #"$mainMod SHIFT, j, resizeactive, 0 30"
 
                 # Functional keybinds
                 ",XF86MonBrightnessDown,exec,brightnessctl set 2%-"
@@ -411,19 +417,21 @@ in
                 [
                   # Keybinds help menu
                   "$mainMod, question, exec, ${./scripts/keybinds.sh}"
-                  "$mainMod, slash, exec, ${./scripts/keybinds.sh}"
-                  "$mainMod CTRL, K, exec, ${./scripts/keybinds.sh}"
+                  #"$mainMod, slash, exec, ${./scripts/keybinds.sh}"
+                  #"$mainMod CTRL, K, exec, ${./scripts/keybinds.sh}"
 
-                  "$mainMod, F8, exec, kill $(cat /tmp/auto-clicker.pid) 2>/dev/null || ${lib.getExe autoclicker} --cps 40"
+                  #"$mainMod, F8, exec, kill $(cat /tmp/auto-clicker.pid) 2>/dev/null || ${lib.getExe autoclicker} --cps 40"
                   # "$mainMod ALT, mouse:276, exec, kill $(cat /tmp/auto-clicker.pid) 2>/dev/null || ${lib.getExe autoclicker} --cps 60"
 
                   # Night Mode (lower value means warmer temp)
-                  "$mainMod, F9, exec, ${getExe pkgs.hyprsunset} --temperature 3500" # good values: 3500, 3000, 2500
-                  "$mainMod, F10, exec, pkill hyprsunset"
+                  #"$mainMod, F9, exec, ${getExe pkgs.hyprsunset} --temperature 3500" # good values: 3500, 3000, 2500
+                  #"$mainMod, F10, exec, pkill hyprsunset"
 
                   # Window/Session actions
-                  "$mainMod, Q, exec, ${./scripts/dontkillsteam.sh}" # killactive, kill the window on focus
-                  "ALT, F4, exec, ${./scripts/dontkillsteam.sh}" # killactive, kill the window on focus
+                  "$mainMod, Q, killactive"
+                  "$mainMod SHIFT, Q, exec, hyprctl activewindow | grep pid | tr -d 'pid:' | xargs kill" # Quit active window and all open instances
+                  #"$mainMod, Q, exec, ${./scripts/dontkillsteam.sh}" # killactive, kill the window on focus
+                  #"ALT, F4, exec, ${./scripts/dontkillsteam.sh}" # killactive, kill the window on focus
                   "$mainMod, delete, exit" # kill hyperland session
                   "$mainMod, W, togglefloating" # toggle the window on focus to float
                   "$mainMod SHIFT, G, togglegroup" # toggle the window on focus to float
@@ -434,20 +442,20 @@ in
 
                   # Applications/Programs
                   "$mainMod, Return, exec, $term"
-                  "$mainMod, T, exec, $term"
-                  "$mainMod, E, exec, $fileManager"
+                  #"$mainMod, T, exec, $term"
+                  "$mainMod, F, exec, $fileManager"
                   "$mainMod, C, exec, $editor"
-                  "$mainMod, F, exec, $browser"
-                  "$mainMod SHIFT, S, exec, spotify"
-                  "$mainMod SHIFT, Y, exec, youtube-music"
+                  "$mainMod, B, exec, $browser"
+                  #"$mainMod SHIFT, S, exec, spotify"
+                  #"$mainMod SHIFT, Y, exec, youtube-music"
                   "$CONTROL ALT, DELETE, exec, $term -e '${getExe pkgs.btop}'" # System Monitor
                   "$mainMod CTRL, C, exec, hyprpicker --autocopy --format=hex" # Colour Picker
 
-                  "$mainMod, A, exec, launcher drun" # launch desktop applications
+                  #"$mainMod, A, exec, launcher drun" # launch desktop applications
                   "$mainMod, SPACE, exec, launcher drun" # launch desktop applications
                   "$mainMod SHIFT, W, exec, launcher wallpaper" # launch wallpaper switcher
-                  "$mainMod, Z, exec, launcher emoji" # launch emoji picker
-                  "$mainMod SHIFT, T, exec, launcher tmux" # launch tmux sessions
+                  #"$mainMod, Z, exec, launcher emoji" # launch emoji picker
+                  #"$mainMod SHIFT, T, exec, launcher tmux" # launch tmux sessions
                   "$mainMod, G, exec, launcher games" # game launcher
                   # "$mainMod, tab, exec, launcher window" # switch between desktop applications
                   # "$mainMod, R, exec, launcher file" # brrwse system files
@@ -496,24 +504,24 @@ in
                   "$mainMod, right, movefocus, r"
                   "$mainMod, up, movefocus, u"
                   "$mainMod, down, movefocus, d"
-                  "ALT, Tab, movefocus, d"
+                  #"ALT, Tab, movefocus, d"
 
                   # Move focus with mainMod + HJKL keys
-                  "$mainMod, h, movefocus, l"
-                  "$mainMod, l, movefocus, r"
-                  "$mainMod, k, movefocus, u"
-                  "$mainMod, j, movefocus, d"
+                  #"$mainMod, h, movefocus, l"
+                  #"$mainMod, l, movefocus, r"
+                  #"$mainMod, k, movefocus, u"
+                  #"$mainMod, j, movefocus, d"
 
                   # Go to workspace 6 and 7 with mouse side buttons
-                  "$mainMod, mouse:276, workspace, 5"
-                  "$mainMod, mouse:275, workspace, 6"
-                  "$mainMod SHIFT, mouse:276, movetoworkspace, 5"
-                  "$mainMod SHIFT, mouse:275, movetoworkspace, 6"
-                  "$mainMod CTRL, mouse:276, movetoworkspacesilent, 5"
-                  "$mainMod CTRL, mouse:275, movetoworkspacesilent, 6"
+                  #"$mainMod, mouse:276, workspace, 5"
+                  #"$mainMod, mouse:275, workspace, 6"
+                  #"$mainMod SHIFT, mouse:276, movetoworkspace, 5"
+                  #"$mainMod SHIFT, mouse:275, movetoworkspace, 6"
+                  #"$mainMod CTRL, mouse:276, movetoworkspacesilent, 5"
+                  #"$mainMod CTRL, mouse:275, movetoworkspacesilent, 6"
 
                   # Rebuild NixOS with a KeyBind
-                  "$mainMod, U, exec, $term -e rebuild"
+                  #"$mainMod, U, exec, $term -e rebuild"
 
                   # Scroll through existing workspaces with mainMod + scroll
                   "$mainMod, mouse_down, workspace, e+1"
@@ -524,21 +532,21 @@ in
                   "$mainMod CTRL ALT, left, movetoworkspace, r-1"
 
                   # Move active window around current workspace with mainMod + SHIFT + CTRL [←→↑↓]
-                  "$mainMod SHIFT $CONTROL, left, movewindow, l"
-                  "$mainMod SHIFT $CONTROL, right, movewindow, r"
-                  "$mainMod SHIFT $CONTROL, up, movewindow, u"
-                  "$mainMod SHIFT $CONTROL, down, movewindow, d"
+                  "$mainMod ALT, left, movewindow, l"
+                  "$mainMod ALT, right, movewindow, r"
+                  "$mainMod ALT, up, movewindow, u"
+                  "$mainMod ALT, down, movewindow, d"
 
                   # Move active window around current workspace with mainMod + SHIFT + CTRL [HLJK]
-                  "$mainMod SHIFT $CONTROL, H, movewindow, l"
-                  "$mainMod SHIFT $CONTROL, L, movewindow, r"
-                  "$mainMod SHIFT $CONTROL, K, movewindow, u"
-                  "$mainMod SHIFT $CONTROL, J, movewindow, d"
+                  #"$mainMod SHIFT $CONTROL, H, movewindow, l"
+                  #"$mainMod SHIFT $CONTROL, L, movewindow, r"
+                  #"$mainMod SHIFT $CONTROL, K, movewindow, u"
+                  #"$mainMod SHIFT $CONTROL, J, movewindow, d"
 
                   # Special workspaces (scratchpad)
-                  "$mainMod CTRL, S, movetoworkspacesilent, special"
-                  "$mainMod ALT, S, movetoworkspacesilent, special"
-                  "$mainMod, S, togglespecialworkspace,"
+                  "$mainMod CTRL, Z, movetoworkspacesilent, special"
+                  "$mainMod SHIFT, Z, movetoworkspace, special"
+                  "$mainMod, Z, togglespecialworkspace,"
                 ]
                 ++ (builtins.concatLists (
                   builtins.genList (
@@ -579,19 +587,19 @@ in
                 "desc:BNQ BenQ xl2420t 99D06760SL0,preferred,1920x-420,1,transform,1" # 5 for fipped
               ];
 
-              workspace = [
+              #workspace = [
                 # Binds workspaces to my monitors (find desc with: hyprctl monitors)
-                "1,monitor:desc:BNQ BenQ EL2870U PCK00489SL0,default:true"
-                "2,monitor:desc:BNQ BenQ EL2870U PCK00489SL0"
-                "3,monitor:desc:BNQ BenQ EL2870U PCK00489SL0"
-                "4,monitor:desc:BNQ BenQ EL2870U PCK00489SL0"
-                "5,monitor:desc:BNQ BenQ EW277HDR 99J01861SL0,default:true"
-                "6,monitor:desc:BNQ BenQ EW277HDR 99J01861SL0"
-                "7,monitor:desc:BNQ BenQ EW277HDR 99J01861SL0"
-                "8,monitor:desc:BNQ BenQ xl2420t 99D06760SL0,default:true"
-                "9,monitor:desc:BNQ BenQ xl2420t 99D06760SL0"
-                "10,monitor:desc:BNQ BenQ EL2870U PCK00489SL0"
-              ];
+                #"1,monitor:desc:BNQ BenQ EL2870U PCK00489SL0,default:true"
+                #"2,monitor:desc:BNQ BenQ EL2870U PCK00489SL0"
+                #"3,monitor:desc:BNQ BenQ EL2870U PCK00489SL0"
+                #"4,monitor:desc:BNQ BenQ EL2870U PCK00489SL0"
+                #"5,monitor:desc:BNQ BenQ EW277HDR 99J01861SL0,default:true"
+                #"6,monitor:desc:BNQ BenQ EW277HDR 99J01861SL0"
+                #"7,monitor:desc:BNQ BenQ EW277HDR 99J01861SL0"
+                #"8,monitor:desc:BNQ BenQ xl2420t 99D06760SL0,default:true"
+                #"9,monitor:desc:BNQ BenQ xl2420t 99D06760SL0"
+                #"10,monitor:desc:BNQ BenQ EL2870U PCK00489SL0"
+              #];
             };
           };
         }
