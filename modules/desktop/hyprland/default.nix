@@ -18,7 +18,7 @@ in
 {
   imports = [
     ../../themes/Catppuccin # Catppuccin GTK and QT themes
-    ./programs/waybar/${waybarTheme}.nix
+    #./programs/waybar/${waybarTheme}.nix
     ./programs/wlogout
     ./programs/rofi
     ./programs/hypridle
@@ -160,17 +160,18 @@ in
                   #"[workspace special silent] ${terminal}"
 
                   "${lib.getExe wallpaper}"
-                  "waybar"
-                  "swaync"
+                  #"waybar"
+                  "noctalia-shell"
+                  #"swaync"
                   "nm-applet --indicator"
                   # "wl-clipboard-history -t"
                   "${getExe' pkgs.wl-clipboard "wl-paste"} --type text --watch cliphist store" # clipboard store text data
                   "${getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch cliphist store" # clipboard store image data
                   "rm '$XDG_CACHE_HOME/cliphist/db'" # Clear clipboard
-                  "${./scripts/batterynotify.sh}" # battery notification
+                  #"${./scripts/batterynotify.sh}" # battery notification
                   # "${./scripts/autowaybar.sh}" # uncomment packages at the top
                   "polkit-agent-helper-1"
-                  "pamixer --set-volume 50"
+                  #"pamixer --set-volume 50"
                   "nextcloud --background"
                   "steam -silent"
                   "heroic"
