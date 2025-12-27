@@ -588,6 +588,7 @@ in
                 "desc:BNQ BenQ xl2420t 99D06760SL0,preferred,1920x-420,1,transform,1" # 5 for fipped
               ];
 
+              workspace = ["1" "2" "3" "4" "5"];
               #workspace = [
                 # Binds workspaces to my monitors (find desc with: hyprctl monitors)
                 #"1,monitor:desc:BNQ BenQ EL2870U PCK00489SL0,default:true"

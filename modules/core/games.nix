@@ -15,6 +15,7 @@
     enable = true;
     enable32Bit = true;
   };
+  hardware.xpadneo.enable = true;
   environment.systemPackages = with pkgs; [
     lutris
     heroic
