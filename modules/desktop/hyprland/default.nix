@@ -20,10 +20,10 @@ in
     ../../themes/Catppuccin # Catppuccin GTK and QT themes
     #./programs/waybar/${waybarTheme}.nix
     ./programs/wlogout
-    ./programs/rofi
+    #./programs/rofi
     ./programs/hypridle
     ./programs/hyprlock
-    ./programs/swaync
+    #./programs/swaync
     # ./programs/dunst
     ./programs/noctalia
   ];
@@ -93,7 +93,7 @@ in
             pamixer
             pavucontrol
             playerctl
-            waybar
+            #waybar
             wtype
             wl-clipboard
             xdotool
@@ -439,7 +439,7 @@ in
                   "ALT, return, fullscreen" # toggle the window on focus to fullscreen
                   "$mainMod ALT, L, exec, hyprlock" # lock screen
                   "$mainMod, backspace, exec, pkill -x wlogout || wlogout -b 4" # logout menu
-                  "$CONTROL, ESCAPE, exec, pkill waybar || waybar" # toggle waybar
+                  #"$CONTROL, ESCAPE, exec, pkill waybar || waybar" # toggle waybar
 
                   # Applications/Programs
                   "$mainMod, Return, exec, $term"
@@ -453,7 +453,8 @@ in
                   "$mainMod CTRL, C, exec, hyprpicker --autocopy --format=hex" # Colour Picker
 
                   #"$mainMod, A, exec, launcher drun" # launch desktop applications
-                  "$mainMod, SPACE, exec, launcher drun" # launch desktop applications
+                  #"$mainMod, SPACE, exec, launcher drun" # launch desktop applications
+                  "$mainMod, SPACE, exec, noctalia-shell ipc call launcher toggle"
                   "$mainMod SHIFT, W, exec, launcher wallpaper" # launch wallpaper switcher
                   #"$mainMod, Z, exec, launcher emoji" # launch emoji picker
                   #"$mainMod SHIFT, T, exec, launcher tmux" # launch tmux sessions
@@ -461,8 +462,8 @@ in
                   # "$mainMod, tab, exec, launcher window" # switch between desktop applications
                   # "$mainMod, R, exec, launcher file" # brrwse system files
                   "$mainMod ALT, K, exec, ${./scripts/keyboardswitch.sh}" # change keyboard layout
-                  "$mainMod SHIFT, N, exec, swaync-client -t -sw" # swayNC panel
-                  "$mainMod SHIFT, Q, exec, swaync-client -t -sw" # swayNC panel
+                  #"$mainMod SHIFT, N, exec, swaync-client -t -sw" # swayNC panel
+                  #"$mainMod SHIFT, Q, exec, swaync-client -t -sw" # swayNC panel
                   "$mainMod ALT, G, exec, ${./scripts/gamemode.sh}" # disable hypr effects for gamemode
                   "$mainMod, V, exec, ${./scripts/ClipManager.sh}" # Clipboard Manager
                   "$mainMod, M, exec, ${./scripts/rofimusic.sh}" # online music
@@ -583,9 +584,9 @@ in
                 ",preferred,auto,1"
 
                 # My Monitors (Fine to leave these since i used the serial numbers)
-                "desc:BNQ BenQ EW277HDR 99J01861SL0,preferred,-1920x0,1"
-                "desc:BNQ BenQ EL2870U PCK00489SL0,preferred,0x0,2"
-                "desc:BNQ BenQ xl2420t 99D06760SL0,preferred,1920x-420,1,transform,1" # 5 for fipped
+                #"desc:BNQ BenQ EW277HDR 99J01861SL0,preferred,-1920x0,1"
+                #"desc:BNQ BenQ EL2870U PCK00489SL0,preferred,0x0,2"
+                #"desc:BNQ BenQ xl2420t 99D06760SL0,preferred,1920x-420,1,transform,1" # 5 for fipped
               ];
 
               workspace = ["1" "2" "3" "4" "5"];
