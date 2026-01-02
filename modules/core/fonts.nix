@@ -3,12 +3,14 @@
   fonts = {
     fontDir.enable = true;
     packages = with pkgs; [
-      # Nerd Fonts
-      maple-mono.NF
-      pkgs.nerd-fonts.jetbrains-mono
-
-      # Normal Fonts
+      
+      nerd-fonts.jetbrains-mono
+      roboto
+      roboto-serif
+      nerd-fonts.roboto-mono
+      liberation_ttf
       noto-fonts
+      noto-fonts-cjk-sans
       noto-fonts-color-emoji
     ];
     fontconfig = {
@@ -17,7 +19,7 @@
       defaultFonts = {
         monospace = [
           "JetBrainsMono Nerd Font"
-          "Maple Mono NF"
+          "Roboto Mono"
           "Noto Mono"
           "DejaVu Sans Mono" # Default
         ];

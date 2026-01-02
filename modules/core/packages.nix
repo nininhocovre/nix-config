@@ -29,7 +29,7 @@
     fzf # Fuzzy Finder
     fd # Better Find
     git # Git
-    gh # Github Authentication Client
+    # gh # Github Authentication Client
     libjxl # Support for JXL Images
     microfetch # Small fetch (Blazingly fast)
     nix-prefetch-scripts # Find Hashes/Revisions of Nix Packages
@@ -42,10 +42,10 @@
     # cowsay # Great Fun Terminal Program
     # duf # Utility For Viewing Disk Usage In Terminal
     # dysk # Disk space util nice formattting
-    # ffmpeg # Terminal Video / Audio Editing
+    ffmpeg # Terminal Video / Audio Editing
     # gemini-cli # CLI AI client ONLY (optional)
     # glxinfo # needed for inxi diag util
-    # inxi # CLI System Information Tool
+    inxi # CLI System Information Tool
     # libsForQt5.qt5.qtgraphicaleffects # Sddm Dependency (Old)
     # libnotify # For Notifications
     # lolcat # Add Colors To Your Terminal Command Output
@@ -66,7 +66,7 @@
     # v4l-utils # Used For Things Like OBS Virtual Camera
     # warp-terminal # Terminal with AI support build in
     # waypaper # Change wallpaper
-    # wget # Tool For Fetching Files With Links
+    wget # Tool For Fetching Files With Links
     # ytmdl # Tool For Downloading Audio From YouTube
 
     # devenv

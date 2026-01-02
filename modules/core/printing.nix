@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   services = {
     printing = {
@@ -14,4 +14,8 @@
     # };
     # ipp-usb.enable = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    brlaser
+  ];
 }
