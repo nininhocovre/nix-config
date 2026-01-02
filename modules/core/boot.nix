@@ -24,19 +24,19 @@
         enable = true;
         device = "nodev";
         efiSupport = true;
-        useOSProber = true;
-        extraEntries =
-          ''
-          menuentry "Arch Linux" {
-            insmod all_video
-            set gfxpayload=keep
-            search --no-floppy --fs-uuid  --set=root 231D-E6D2
-            echo 'Loading Kernel: vmlinuz-linux ...'
-            linux "/vmlinuz-linux" root=UUID=78286f55-15cc-4a2e-9300-ff846f6ae48c zswap.enabled=0 rootfstype=btrfs pcie_aspm=off loglevel=3  rootflags=rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,autodefrag,subvol="@"
-            echo 'Loading Initramfs: initramfs-linux.img ...'
-            initrd "/initramfs-linux.img"
-          }
-          '';
+        # useOSProber = true;
+        # extraEntries =
+        #   ''
+        #   menuentry "Arch Linux" {
+        #     insmod all_video
+        #     set gfxpayload=keep
+        #     search --no-floppy --fs-uuid  --set=root 231D-E6D2
+        #     echo 'Loading Kernel: vmlinuz-linux ...'
+        #     linux "/vmlinuz-linux" root=UUID=78286f55-15cc-4a2e-9300-ff846f6ae48c zswap.enabled=0 rootfstype=btrfs pcie_aspm=off loglevel=3  rootflags=rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,autodefrag,subvol="@"
+        #     echo 'Loading Initramfs: initramfs-linux.img ...'
+        #     initrd "/initramfs-linux.img"
+        #   }
+        #   '';
         gfxmodeEfi = "2715x1527"; # for 4k: 3840x2160
         gfxmodeBios = "2715x1527"; # for 4k: 3840x2160
         theme = pkgs.stdenv.mkDerivation {
