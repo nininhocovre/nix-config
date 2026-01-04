@@ -18,11 +18,17 @@
     options = [ "nofail" "noatime" "compress=zstd:3" "ssd" "discard=async" "space_cache=v2" "autodefrag" ];
   };
 
+  fileSystems."/mnt/move_dados" = {
+    device = "/dev/disk/by-uuid/145a3fdb-0b59-4001-80f5-1839494583c0";
+    fsType = "btrfs";
+    options = [ "subvol=@dados" "nofail" "noatime" "compress=zstd:3" "ssd" "discard=async" "space_cache=v2" "autodefrag" ];
+  };
+
   fileSystems."/mnt/games" = {
-      device = "/dev/disk/by-uuid/145a3fdb-0b59-4001-80f5-1839494583c0";
-      fsType = "btrfs";
-      options = [ "subvol=@games" "nofail" "noatime" "compress=zstd:3" "ssd" "discard=async" "space_cache=v2" "autodefrag" ];
-    };
+    device = "/dev/disk/by-uuid/145a3fdb-0b59-4001-80f5-1839494583c0";
+    fsType = "btrfs";
+    options = [ "subvol=@games" "nofail" "noatime" "compress=zstd:3" "ssd" "discard=async" "space_cache=v2" "autodefrag" ];
+  };
 
   zramSwap = {
     enable = true;
