@@ -55,7 +55,7 @@
             "window.titleBarStyle" = "custom"; # needed otherwise vscode crashes, see https://github.com/NixOS/nixpkgs/issues/246509
             "window.menuBarVisibility" = "classic";
             # "window.zoomLevel" = 0.5;
-            "editor.fontSize" = 11;
+            "editor.fontSize" = 12;
             "workbench.colorTheme" = "Catppuccin Mocha";
             "workbench.iconTheme" = "catppuccin-mocha";
             "catppuccin.accentColor" = "mauve";
@@ -87,7 +87,7 @@
             # "editor.formatOnType" = true;
             "editor.formatOnPaste" = true;
 
-            "editor.minimap.enabled" = false;
+            "editor.minimap.enabled" = true;
             "workbench.sideBar.location" = "left";
             # "workbench.activityBar.location" = "hidden";
             # "workbench.editor.showTabs" = "single";
@@ -102,8 +102,8 @@
             "editor.stickyScroll.enabled" = false; # Top code preview
             "editor.scrollbar.verticalScrollbarSize" = 2;
             "editor.scrollbar.horizontalScrollbarSize" = 2;
-            "editor.scrollbar.vertical" = "hidden";
-            "editor.scrollbar.horizontal" = "hidden";
+            # "editor.scrollbar.vertical" = "hidden";
+            # "editor.scrollbar.horizontal" = "hidden";
             "workbench.layoutControl.enabled" = false;
 
             "editor.mouseWheelZoom" = true;

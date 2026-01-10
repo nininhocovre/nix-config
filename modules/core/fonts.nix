@@ -5,6 +5,7 @@
     packages = with pkgs; [
       
       nerd-fonts.jetbrains-mono
+      nerd-fonts.hasklug
       roboto
       roboto-serif
       nerd-fonts.roboto-mono
@@ -18,6 +19,7 @@
       antialias = true;
       defaultFonts = {
         monospace = [
+          "Hasklug Nerd Font"
           "JetBrainsMono Nerd Font"
           "Roboto Mono"
           "Noto Mono"
