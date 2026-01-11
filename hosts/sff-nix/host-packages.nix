@@ -16,9 +16,9 @@
     freecad
     orca-slicer
     sparrow
-    coolercontrol.coolercontrold
-    coolercontrol.coolercontrol-gui
   ];
+
+  # programs.coolercontrol.enable = true; # need to configure fan curve
 
   home-manager.sharedModules = [
     (_: {

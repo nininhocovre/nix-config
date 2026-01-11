@@ -175,7 +175,6 @@ in
                   "nextcloud --background"
                   "steam -silent"
                   "heroic"
-                  "coolercontrold"
                   "Enpass -minimize"
                 ];
               input = {
