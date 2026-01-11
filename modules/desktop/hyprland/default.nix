@@ -17,7 +17,7 @@ let
 in
 {
   imports = [
-    ../../themes/Catppuccin # Catppuccin GTK and QT themes
+    ../../themes/Catppuccin-light # Catppuccin GTK and QT themes
     #./programs/waybar/${waybarTheme}.nix
     ./programs/wlogout
     #./programs/rofi

@@ -54,7 +54,7 @@ in
     ../../modules/programs/media/mpv
     ../../modules/programs/misc/tlp
     ../../modules/programs/misc/thunar
-    ../../modules/programs/misc/lact # GPU fan, clock and power configuration
+    #../../modules/programs/misc/lact # GPU fan, clock and power configuration
   ]
   ++ lib.optional (vars.games == true) ../../modules/core/games.nix;
 }
