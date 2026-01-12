@@ -5,7 +5,7 @@
   ...
 }:
 let
-  nvidiaDriverChannel = config.boot.kernelPackages.nvidiaPackages.latest; # stable, latest, beta, etc.
+  nvidiaDriverChannel = config.boot.kernelPackages.nvidiaPackages.stable; # stable, latest, beta, etc.
 in
 {
   environment.sessionVariables = lib.optionalAttrs config.programs.hyprland.enable {
@@ -30,9 +30,9 @@ in
   ];
   hardware = {
     nvidia = {
-      open = false;
-      # nvidiaPersistenced = true;
-      nvidiaSettings = false;
+      open = true;
+      nvidiaPersistenced = true;
+      nvidiaSettings = true;
       powerManagement.enable = true; # Fixes sleep/suspend
 
       modesetting.enable = true; # Modesetting is required.
@@ -53,14 +53,14 @@ in
   nixpkgs.config = {
     nvidia.acceptLicense = true;
     #cudaSupport = true;
-    allowUnfreePredicate =
-      pkg:
-      builtins.elem (lib.getName pkg) [
-        #"cudatoolkit"
-        "nvidia-persistenced"
-        "nvidia-settings"
-        "nvidia-x11"
-      ];
+    # allowUnfreePredicate =
+    #   pkg:
+    #   builtins.elem (lib.getName pkg) [
+    #     #"cudatoolkit"
+    #     "nvidia-persistenced"
+    #     "nvidia-settings"
+    #     "nvidia-x11"
+    #   ];
   };
   nix.settings = {
     substituters = [ "https://cuda-maintainers.cachix.org" ];
