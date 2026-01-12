@@ -86,7 +86,6 @@
             ./hosts/${host}/configuration.nix
           ];
           specialArgs = {
-            overlays = import ./overlays { inherit inputs host; };
             inherit
               self
               inputs
