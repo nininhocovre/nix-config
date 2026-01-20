@@ -18,6 +18,9 @@ in
     __GL_GSYNC_ALLOWED = "1"; # GSync
     __GL_VRR_ALLOWED = "1"; # VRR
     __GL_MaxFramesAllowed = "1"; # Reduces input lag
+
+    NVD_BACKEND = "direct";
+    NVD_LOG = "1";
   };
 
   # Load nvidia driver for Xorg and Wayland

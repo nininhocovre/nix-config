@@ -126,7 +126,7 @@ in
               "$term" = "${getExe pkgs.${terminal}}";
               "$editor" = "code --disable-gpu";
               "$fileManager" = "$term --class \"tuiFileManager\" -e ${tuiFileManager}";
-              "$browser" = "vivaldi";
+              "$browser" = "vivaldi --enable-features=UseOzonePlatform --ozone-platform=wayland";
 
               env = [
                 "XDG_CURRENT_DESKTOP,Hyprland"
