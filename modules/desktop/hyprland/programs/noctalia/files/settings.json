@@ -32,7 +32,7 @@
     "bar": {
         "backgroundOpacity": 0.93,
         "capsuleOpacity": 0.7000000000000001,
-        "density": "comfortable",
+        "density": "spacious",
         "exclusive": true,
         "floating": false,
         "hideOnOverview": false,
@@ -151,7 +151,7 @@
                     "showMemoryAsPercent": true,
                     "showMemoryUsage": true,
                     "showNetworkStats": false,
-                    "showSwapUsage": false,
+                    "showSwapUsage": true,
                     "useMonospaceFont": true,
                     "usePrimaryColor": false
                 },
@@ -205,10 +205,6 @@
             {
                 "enabled": true,
                 "id": "calendar-month-card"
-            },
-            {
-                "enabled": true,
-                "id": "timer-card"
             },
             {
                 "enabled": true,
@@ -321,7 +317,7 @@
         "language": "",
         "lockOnSuspend": true,
         "lockScreenCountdownDuration": 10000,
-        "radiusRatio": 1,
+        "radiusRatio": 0.7000000000000001,
         "scaleRatio": 1,
         "screenRadiusRatio": 1,
         "shadowDirection": "bottom_right",
@@ -413,7 +409,7 @@
             4,
             3
         ],
-        "location": "bottom_right",
+        "location": "bottom",
         "monitors": [
         ],
         "overlayLayer": true
@@ -501,9 +497,9 @@
         "bluetoothDetailsViewMode": "grid",
         "bluetoothHideUnnamedDevices": false,
         "boxBorderEnabled": false,
-        "fontDefault": "Sans Serif",
+        "fontDefault": "Hasklug Nerd Font",
         "fontDefaultScale": 1,
-        "fontFixed": "monospace",
+        "fontFixed": "Hasklug Nerd Font Mono",
         "fontFixedScale": 1,
         "networkPanelView": "wifi",
         "panelBackgroundOpacity": 1,

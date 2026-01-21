@@ -6,8 +6,18 @@
     #protonvpn-gui # VPN
     #github-desktop
     # pokego # Overlayed
-    vivaldi
-    vivaldi-ffmpeg-codecs
+    # vivaldi
+    # vivaldi-ffmpeg-codecs
+    (vivaldi.override {
+      proprietaryCodecs = true;
+      enableWidevine = true;
+      commandLineArgs = ''
+        -enable-features=UseOzonePlatform
+        --ozone-platform=wayland
+        --ozone-platform-hint=auto
+        --enable-features=WaylandWindowDecorations 
+      '';
+    })
     oscar
     doublecmd
     nextcloud-client
