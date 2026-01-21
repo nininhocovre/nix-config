@@ -25,12 +25,12 @@ in
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ]; # or "nvidiaLegacy470", etc.
-  boot.kernelParams = lib.optionals (lib.elem "nvidia" config.services.xserver.videoDrivers) [
-    "nvidia-drm.modeset=1"
-    "nvidia_drm.fbdev=1"
+  # boot.kernelParams = lib.optionals (lib.elem "nvidia" config.services.xserver.videoDrivers) [
+  #   "nvidia-drm.modeset=1"
+  #   "nvidia_drm.fbdev=1"
 
-    "nvidia.NVreg_RegistryDwords=RmEnableAggressiveVblank=1" # Experimental: reduce latency
-  ];
+  #   "nvidia.NVreg_RegistryDwords=RmEnableAggressiveVblank=1" # Experimental: reduce latency
+  # ];
   hardware = {
     nvidia = {
       open = true;
@@ -49,7 +49,7 @@ in
       extraPackages = with pkgs; [
         nvidia-vaapi-driver
         libva-vdpau-driver
-        libvdpau-va-gl
+        # libvdpau-va-gl
       ];
     };
   };
@@ -65,6 +65,10 @@ in
     #     "nvidia-x11"
     #   ];
   };
+  environment.systemPackages = with pkgs; [
+    vdpauinfo
+    libva-utils
+  ];
   nix.settings = {
     substituters = [ "https://cuda-maintainers.cachix.org" ];
     trusted-public-keys = [
