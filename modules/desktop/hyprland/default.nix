@@ -454,12 +454,6 @@ in
                 "$mainMod SHIFT, up, resizeactive, 0 -100"
                 "$mainMod SHIFT, down, resizeactive, 0 100"
 
-                # Resize windows with hjkl keys
-                #"$mainMod SHIFT, l, resizeactive, 30 0"
-                #"$mainMod SHIFT, h, resizeactive, -30 0"
-                #"$mainMod SHIFT, k, resizeactive, 0 -30"
-                #"$mainMod SHIFT, j, resizeactive, 0 30"
-
                 # Functional keybinds
                 ",XF86MonBrightnessDown,exec,brightnessctl set 2%-"
                 ",XF86MonBrightnessUp,exec,brightnessctl set +2%"
@@ -472,8 +466,8 @@ in
                 in
                 [
                   # Keybinds help menu
-                  "$mainMod, question, exec, ${./scripts/keybinds.sh}"
-                  #"$mainMod, slash, exec, ${./scripts/keybinds.sh}"
+                  # "$mainMod, question, exec, ${./scripts/keybinds.sh}"
+                  "$mainMod, slash, exec, ${./scripts/keybinds.sh}"
                   #"$mainMod CTRL, K, exec, ${./scripts/keybinds.sh}"
 
                   #"$mainMod, F8, exec, kill $(cat /tmp/auto-clicker.pid) 2>/dev/null || ${lib.getExe autoclicker} --cps 40"
@@ -521,7 +515,7 @@ in
                   #"$mainMod SHIFT, Q, exec, swaync-client -t -sw" # swayNC panel
                   "$mainMod ALT, G, exec, ${./scripts/gamemode.sh}" # disable hypr effects for gamemode
                   "$mainMod, V, exec, ${./scripts/ClipManager.sh}" # Clipboard Manager
-                  "$mainMod, M, exec, ${./scripts/rofimusic.sh}" # online music
+                  # "$mainMod, M, exec, ${./scripts/rofimusic.sh}" # online music
 
                   # Screenshot/Screencapture
                   "$mainMod SHIFT, R, exec, ${./scripts/screen-record.sh} a" # Screen Record (area select)
@@ -563,20 +557,6 @@ in
                   "$mainMod, down, movefocus, d"
                   #"ALT, Tab, movefocus, d"
 
-                  # Move focus with mainMod + HJKL keys
-                  #"$mainMod, h, movefocus, l"
-                  #"$mainMod, l, movefocus, r"
-                  #"$mainMod, k, movefocus, u"
-                  #"$mainMod, j, movefocus, d"
-
-                  # Go to workspace 6 and 7 with mouse side buttons
-                  #"$mainMod, mouse:276, workspace, 5"
-                  #"$mainMod, mouse:275, workspace, 6"
-                  #"$mainMod SHIFT, mouse:276, movetoworkspace, 5"
-                  #"$mainMod SHIFT, mouse:275, movetoworkspace, 6"
-                  #"$mainMod CTRL, mouse:276, movetoworkspacesilent, 5"
-                  #"$mainMod CTRL, mouse:275, movetoworkspacesilent, 6"
-
                   # Rebuild NixOS with a KeyBind
                   #"$mainMod, U, exec, $term -e rebuild"
 
@@ -584,21 +564,17 @@ in
                   "$mainMod, mouse_down, workspace, e+1"
                   "$mainMod, mouse_up, workspace, e-1"
 
-                  # Move active window to a relative workspace with mainMod + CTRL + ALT + [←→]
-                  "$mainMod CTRL ALT, right, movetoworkspace, r+1"
-                  "$mainMod CTRL ALT, left, movetoworkspace, r-1"
-
-                  # Move active window around current workspace with mainMod + SHIFT + CTRL [←→↑↓]
+                  # Move active window around current workspace with mainMod + ALT [←→↑↓]
                   "$mainMod ALT, left, movewindow, l"
                   "$mainMod ALT, right, movewindow, r"
                   "$mainMod ALT, up, movewindow, u"
                   "$mainMod ALT, down, movewindow, d"
 
-                  # Move active window around current workspace with mainMod + SHIFT + CTRL [HLJK]
-                  #"$mainMod SHIFT $CONTROL, H, movewindow, l"
-                  #"$mainMod SHIFT $CONTROL, L, movewindow, r"
-                  #"$mainMod SHIFT $CONTROL, K, movewindow, u"
-                  #"$mainMod SHIFT $CONTROL, J, movewindow, d"
+                  # Swap active window around current workspace with mainMod + CTRL + ALT [←→↑↓]
+                  "$mainMod CTRL ALT, left, swapwindow, l"
+                  "$mainMod CTRL ALT, right, swapwindow, r"
+                  "$mainMod CTRL ALT, up, swapwindow, u"
+                  "$mainMod CTRL ALT, down, swapwindow, d"
 
                   # Special workspaces (scratchpad)
                   "$mainMod CTRL, Z, movetoworkspacesilent, special"
@@ -644,7 +620,7 @@ in
                 #"desc:BNQ BenQ xl2420t 99D06760SL0,preferred,1920x-420,1,transform,1" # 5 for fipped
               ];
 
-              workspace = ["1" "2" "3" "4" "5"];
+              workspace = ["1,default:true"];
               #workspace = [
                 # Binds workspaces to my monitors (find desc with: hyprctl monitors)
                 #"1,monitor:desc:BNQ BenQ EL2870U PCK00489SL0,default:true"
