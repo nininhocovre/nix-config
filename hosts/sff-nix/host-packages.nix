@@ -26,6 +26,7 @@
     freecad
     orca-slicer
     sparrow
+    vlc
   ];
 
   # programs.coolercontrol.enable = true; # need to configure fan curve
