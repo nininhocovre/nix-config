@@ -7,9 +7,9 @@ in
     enable = true;
     clean = {
       enable = true;
-      extraArgs = "--keep-since 7d --keep 3";
+      extraArgs = "--keep-since 30d --keep 30";
     };
-    flake = "/home/${username}/NixOS";
+    flake = "/home/${username}/nix-config";
   };
 
   # environment.systemPackages = with pkgs; [

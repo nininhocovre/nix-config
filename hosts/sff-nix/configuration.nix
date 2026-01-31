@@ -19,7 +19,7 @@ in
     ../../modules/core/hardware.nix
     ../../modules/core/network.nix
     #../../modules/core/dns.nix
-    #../../modules/core/nh.nix
+    ../../modules/core/nh.nix
     ../../modules/core/packages.nix
     ../../modules/core/printing.nix
     ../../modules/core/sddm.nix
