@@ -32,6 +32,8 @@ in
     # ../../modules/core/virtualisation.nix
     # ../../modules/core/dlna.nix
 
+    ../../modules/core/netbird.nix
+
     # Optional
     # ../../modules/hardware/drives # Automatically mount extra external/internal drives
     ../../modules/hardware/video/${vars.videoDriver}.nix # Enable gpu drivers defined in variables.nix
