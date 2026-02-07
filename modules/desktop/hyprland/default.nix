@@ -173,6 +173,7 @@ in
                   "polkit-agent-helper-1"
                   #"pamixer --set-volume 50"
                   "nextcloud --background"
+                  "netbird-ui"
                   "steam -silent"
                   "heroic"
                   "Enpass -minimize"
