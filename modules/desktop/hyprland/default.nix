@@ -80,7 +80,7 @@ in
           };
 
           home.packages = with pkgs; [
-            swww
+            # swww
             hyprpicker
             cliphist
             wf-recorder
@@ -159,7 +159,7 @@ in
                   #"[workspace special silent] ${browser} --private-window"
                   #"[workspace special silent] ${terminal}"
 
-                  "${lib.getExe wallpaper}"
+                  # "${lib.getExe wallpaper}"
                   #"waybar"
                   "noctalia-shell"
                   #"swaync"
