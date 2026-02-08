@@ -1,13 +1,6 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    #obsidian
-    #ludusavi # For game saves
-    #protonvpn-gui # VPN
-    #github-desktop
-    # pokego # Overlayed
-    # vivaldi
-    # vivaldi-ffmpeg-codecs
     (vivaldi.override {
       proprietaryCodecs = true;
       enableWidevine = true;
