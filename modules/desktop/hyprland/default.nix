@@ -50,7 +50,6 @@ in
 
   programs.hyprland = {
     enable = true;
-    # withUWSM = true;
   };
 
   home-manager.sharedModules =
@@ -80,7 +79,6 @@ in
           };
 
           home.packages = with pkgs; [
-            # swww
             hyprpicker
             cliphist
             wf-recorder
@@ -93,22 +91,16 @@ in
             pamixer
             pavucontrol
             playerctl
-            #waybar
             wtype
             wl-clipboard
             xdotool
             yad
-            # socat # for and autowaybar.sh
-            # jq # for and autowaybar.sh
           ];
 
           xdg.configFile."hypr/icons" = {
             source = ./icons;
             recursive = true;
           };
-
-          # Set wallpaper
-          # services.swww.enable = true;
 
           #test later systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
           wayland.windowManager.hyprland = {
@@ -148,36 +140,21 @@ in
                 "WLR_RENDERER_ALLOW_SOFTWARE,1"
                 "NIXPKGS_ALLOW_UNFREE,1"
               ];
-              exec-once =
-                let
-                  wallpaper = pkgs.callPackage ./scripts/wallpaper.nix { inherit defaultWallpaper; };
-                in
-                [
-                  #"[workspace 1 silent] ${terminal}"
-                  #"[workspace 5 silent] ${browser}"
-                  #"[workspace 6 silent] spotify"
-                  #"[workspace special silent] ${browser} --private-window"
-                  #"[workspace special silent] ${terminal}"
+              exec-once = [
+                "noctalia-shell"
+                "nm-applet --indicator"
+                # "wl-clipboard-history -t"
+                "${getExe' pkgs.wl-clipboard "wl-paste"} --type text --watch cliphist store" # clipboard store text data
+                "${getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch cliphist store" # clipboard store image data
+                "rm '$XDG_CACHE_HOME/cliphist/db'" # Clear clipboard
+                "polkit-agent-helper-1"
 
-                  # "${lib.getExe wallpaper}"
-                  #"waybar"
-                  "noctalia-shell"
-                  #"swaync"
-                  "nm-applet --indicator"
-                  # "wl-clipboard-history -t"
-                  "${getExe' pkgs.wl-clipboard "wl-paste"} --type text --watch cliphist store" # clipboard store text data
-                  "${getExe' pkgs.wl-clipboard "wl-paste"} --type image --watch cliphist store" # clipboard store image data
-                  "rm '$XDG_CACHE_HOME/cliphist/db'" # Clear clipboard
-                  #"${./scripts/batterynotify.sh}" # battery notification
-                  # "${./scripts/autowaybar.sh}" # uncomment packages at the top
-                  "polkit-agent-helper-1"
-                  #"pamixer --set-volume 50"
-                  "nextcloud --background"
-                  "netbird-ui"
-                  "steam -silent"
-                  "heroic"
-                  "Enpass -minimize"
-                ];
+                "nextcloud --background"
+                "netbird-ui"
+                "steam -silent"
+                "heroic"
+                "Enpass -minimize"
+              ];
               input = {
                 kb_layout = "${kbdLayout},ru";
                 kb_variant = "${kbdVariant},";
@@ -196,7 +173,7 @@ in
               };
               general = {
                 gaps_in = 4;
-                gaps_out = 9;
+                gaps_out = 8;
                 border_size = 2;
                 "col.active_border" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
                 "col.inactive_border" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
@@ -225,20 +202,6 @@ in
                 "col.border_locked_inactive" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
               };
               layerrule = [
-                "blur on, ignore_alpha 0.7, match:namespace rofi"
-                "blur on, ignore_alpha 0.7, match:namespace swaync-control-center"
-                "blur on, ignore_alpha 0, match:namespace swaync-notification-window"
-              #   "blur, rofi"
-              #   "ignorezero, rofi"
-              #   "ignorealpha 0.7, rofi"
-
-              #   "blur, swaync-control-center"
-              #   "blur, swaync-notification-window"
-              #   "ignorezero, swaync-control-center"
-              #   "ignorezero, swaync-notification-window"
-              #   "ignorealpha 0.7, swaync-control-center"
-              #   # "ignorealpha 0.8, swaync-notification-window"
-              #   # "dimaround, swaync-control-center"
               ];
               animations = {
                 enabled = true;
@@ -270,7 +233,7 @@ in
                 direct_scanout = 0; # 0 = off, 1 = on, 2 = auto (on with content type ‘game’)
               };
               ecosystem = {
-                no_update_news = true;
+                # no_update_news = true;
                 no_donation_nag = true;
               };
               misc = {
@@ -348,105 +311,6 @@ in
                 "tag +games, match:class (osu!)"
                 "float on, match:class ^(qt5ct)$"
                 "float on, match:class ^(eog)$"
-              #   #"noanim, class:^(Rofi)$
-              #   "tile,title:(.*)(Godot)(.*)$"
-              #   # "workspace 1, class:^(kitty|Alacritty|org.wezfurlong.wezterm)$"
-              #   # "workspace 2, class:^(code|VSCodium|code-url-handler|codium-url-handler)$"
-              #   # "workspace 3, class:^(krita)$"
-              #   # "workspace 3, title:(.*)(Godot)(.*)$"
-              #   # "workspace 3, title:(GNU Image Manipulation Program)(.*)$"
-              #   # "workspace 3, class:^(factorio)$"
-              #   # "workspace 3, class:^(steam)$"
-              #   # "workspace 5, class:^(firefox|floorp|zen|zen-beta)$"
-              #   # "workspace 6, class:^(Spotify)$"
-              #   # "workspace 6, title:(.*)(Spotify)(.*)$"
-
-              #   # Can use FLOAT FLOAT for active and inactive or just FLOAT
-              #   "opacity 1.00 1.00,class:^(firefox|Brave-browser|floorp|zen|zen-beta)$"
-              #   "opacity 0.90 0.80,class:^(Emacs)$"
-              #   "opacity 0.90 0.80,class:^(gcr-prompter)$" # keyring prompt
-              #   "opacity 0.90 0.80,title:^(Hyprland Polkit Agent)$" # polkit prompt
-              #   "opacity 0.90 0.80,class:^(obsidian)$"
-              #   "opacity 0.90 0.80,class:^(Lutris|lutris|net.lutris.Lutris)$"
-              #   "opacity 0.80 0.70,class:^(kitty|alacritty|Alacritty|org.wezfurlong.wezterm)$"
-              #   "opacity 0.80 0.70,class:^(nvim-wrapper)$"
-              #   "opacity 0.80 0.70,class:^(gnome-disks)$"
-              #   "opacity 0.80 0.70,class:^(org.gnome.Nautilus|Thunar|thunar|pcmanfm)$"
-              #   "opacity 0.80 0.70,class:^(thunar-volman-settings)$"
-              #   "opacity 0.80 0.70,class:^(org.gnome.FileRoller)$"
-              #   "opacity 0.80 0.70,class:^(io.github.ilya_zlobintsev.LACT)$"
-              #   "opacity 0.80 0.70,class:^(Steam|steam|steamwebhelper)$"
-              #   "opacity 0.80 0.70,class:^(Spotify|spotify)$"
-              #   "opacity 0.80 0.70,title:(.*)(Spotify)(.*)$"
-              #   "opacity 0.80 0.70,title:^(Kvantum Manager)$"
-              #   "opacity 0.80 0.70,class:^(VSCodium|codium-url-handler)$"
-              #   "opacity 0.80 0.70,class:^(code|code-url-handler)$"
-              #   "opacity 0.80 0.70,class:^(tuiFileManager)$"
-              #   "opacity 0.80 0.70,class:^(org.kde.dolphin)$"
-              #   "opacity 0.80 0.70,class:^(org.kde.ark)$"
-              #   "opacity 0.80 0.70,class:^(nwg-look)$"
-              #   "opacity 0.80 0.70,class:^(qt5ct|qt6ct)$"
-              #   "opacity 0.80 0.70,class:^(yad)$"
-
-              #   "opacity 0.90 0.80,class:^(discord)$" # Discord-Electron
-              #   "opacity 0.90 0.80,class:^(WebCord)$" # WebCord-Electron
-              #   "opacity 0.90 0.80,class:^(com.github.rafostar.Clapper)$" # Clapper-Gtk
-              #   "opacity 0.80 0.70,class:^(com.github.tchx84.Flatseal)$" # Flatseal-Gtk
-              #   "opacity 0.80 0.70,class:^(hu.kramo.Cartridges)$" # Cartridges-Gtk
-              #   "opacity 0.80 0.70,class:^(com.obsproject.Studio)$" # Obs-Qt
-              #   "opacity 0.80 0.70,class:^(gnome-boxes)$" # Boxes-Gtk
-              #   "opacity 0.80 0.70,class:^(app.drey.Warp)$" # Warp-Gtk
-              #   "opacity 0.80 0.70,class:^(net.davidotek.pupgui2)$" # ProtonUp-Qt
-              #   "opacity 0.80 0.70,class:^(Signal)$" # Signal-Gtk
-              #   "opacity 0.80 0.70,class:^(io.gitlab.theevilskeleton.Upscaler)$" # Upscaler-Gtk
-
-              #   "opacity 0.80 0.70,class:^(pavucontrol)$"
-              #   "opacity 0.80 0.70,class:^(org.pulseaudio.pavucontrol)$"
-              #   "opacity 0.80 0.70,class:^(blueman-manager)$"
-              #   "opacity 0.80 0.70,class:^(.blueman-manager-wrapped)$"
-              #   "opacity 0.80 0.70,class:^(nm-applet)$"
-              #   "opacity 0.80 0.70,class:^(nm-connection-editor)$"
-              #   "opacity 0.80 0.70,class:^(org.kde.polkit-kde-authentication-agent-1)$"
-
-              #   # Block discord and browsers from screenshare/screenshots
-              #   # "noscreenshare,class:^(firefox|Brave-browser|floorp|zen|zen-beta)$"
-              #   # "noscreenshare,class:^(discord)$"
-
-              #   # Float and pin Picture-in-Picture in browsers
-              #   "float,title:^(Picture-in-Picture)$,class:^(zen|zen-beta|floorp|firefox)$"
-              #   "pin,title:^(Picture-in-Picture)$,class:^(zen|zen-beta|floorp|firefox)$"
-
-              #   "content game, tag:games"
-              #   "tag +games, content:game"
-              #   "tag +games, class:^(steam_app.*|steam_app_\d+)$"
-              #   "tag +games, class:^(gamescope)$"
-              #   "tag +games, class:(Waydroid)"
-              #   "tag +games, class:(osu!)"
-
-              #   # Games
-              #   "syncfullscreen,tag:games"
-              #   "fullscreen,tag:games"
-              #   "noborder 1,tag:games"
-              #   "noshadow,tag:games"
-              #   "noblur,tag:games"
-              #   "noanim,tag:games"
-
-              #   "float,class:^(qt5ct)$"
-              #   "float,class:^(nwg-look)$"
-              #   "float,class:^(org.kde.ark)$"
-              #   "float,class:^(Signal)$" # Signal-Gtk
-              #   "float,class:^(com.github.rafostar.Clapper)$" # Clapper-Gtk
-              #   "float,class:^(app.drey.Warp)$" # Warp-Gtk
-              #   "float,class:^(net.davidotek.pupgui2)$" # ProtonUp-Qt
-              #   "float,class:^(eog)$" # Imageviewer-Gtk
-              #   "float,class:^(io.gitlab.theevilskeleton.Upscaler)$" # Upscaler-Gtk
-              #   "float,class:^(yad)$"
-              #   "float,class:^(pavucontrol)$"
-              #   "float,class:^(blueman-manager)$"
-              #   "float,class:^(.blueman-manager-wrapped)$"
-              #   "float,class:^(nm-applet)$"
-              #   "float,class:^(nm-connection-editor)$"
-              #   "float,class:^(org.kde.polkit-kde-authentication-agent-1)$"
               ];
               binde = [
                 # Resize windows
@@ -461,144 +325,106 @@ in
                 ",XF86AudioLowerVolume,exec,pamixer -d 2"
                 ",XF86AudioRaiseVolume,exec,pamixer -i 2"
               ];
-              bind =
-                let
-                  autoclicker = pkgs.callPackage ./scripts/autoclicker.nix { };
-                in
-                [
-                  # Keybinds help menu
-                  # "$mainMod, question, exec, ${./scripts/keybinds.sh}"
-                  "$mainMod, slash, exec, ${./scripts/keybinds.sh}"
-                  #"$mainMod CTRL, K, exec, ${./scripts/keybinds.sh}"
+              bind = [
+                # Keybinds help menu
+                "$mainMod, slash, exec, ${./scripts/keybinds.sh}"
 
-                  #"$mainMod, F8, exec, kill $(cat /tmp/auto-clicker.pid) 2>/dev/null || ${lib.getExe autoclicker} --cps 40"
-                  # "$mainMod ALT, mouse:276, exec, kill $(cat /tmp/auto-clicker.pid) 2>/dev/null || ${lib.getExe autoclicker} --cps 60"
+                # Window/Session actions
+                "$mainMod, Q, killactive"
+                "$mainMod SHIFT, Q, exec, hyprctl activewindow | grep pid | tr -d 'pid:' | xargs kill" # Quit active window and all open instances
+                "$mainMod, delete, exit" # kill hyperland session
+                "$mainMod, W, togglefloating" # toggle the window on focus to float
+                "$mainMod SHIFT, G, togglegroup" # toggle the window on focus to float
+                "ALT, return, fullscreen" # toggle the window on focus to fullscreen
+                "$mainMod ALT, L, exec, hyprlock" # lock screen
+                "$mainMod, backspace, exec, pkill -x wlogout || wlogout -b 4" # logout menu
 
-                  # Night Mode (lower value means warmer temp)
-                  #"$mainMod, F9, exec, ${getExe pkgs.hyprsunset} --temperature 3500" # good values: 3500, 3000, 2500
-                  #"$mainMod, F10, exec, pkill hyprsunset"
+                # Applications/Programs
+                "$mainMod, Return, exec, $term"
+                "$mainMod, F, exec, $fileManager"
+                "$mainMod, C, exec, $editor"
+                "$mainMod, B, exec, $browser"
+                "$CONTROL ALT, DELETE, exec, $term -e '${getExe pkgs.btop}'" # System Monitor
+                "$mainMod CTRL, C, exec, hyprpicker --autocopy --format=hex" # Colour Picker
 
-                  # Window/Session actions
-                  "$mainMod, Q, killactive"
-                  "$mainMod SHIFT, Q, exec, hyprctl activewindow | grep pid | tr -d 'pid:' | xargs kill" # Quit active window and all open instances
-                  #"$mainMod, Q, exec, ${./scripts/dontkillsteam.sh}" # killactive, kill the window on focus
-                  #"ALT, F4, exec, ${./scripts/dontkillsteam.sh}" # killactive, kill the window on focus
-                  "$mainMod, delete, exit" # kill hyperland session
-                  "$mainMod, W, togglefloating" # toggle the window on focus to float
-                  "$mainMod SHIFT, G, togglegroup" # toggle the window on focus to float
-                  "ALT, return, fullscreen" # toggle the window on focus to fullscreen
-                  "$mainMod ALT, L, exec, hyprlock" # lock screen
-                  "$mainMod, backspace, exec, pkill -x wlogout || wlogout -b 4" # logout menu
-                  #"$CONTROL, ESCAPE, exec, pkill waybar || waybar" # toggle waybar
+                "$mainMod, SPACE, exec, noctalia-shell ipc call launcher toggle"
+                "$mainMod, G, exec, launcher games" # game launcher
+                "$mainMod ALT, G, exec, ${./scripts/gamemode.sh}" # disable hypr effects for gamemode
+                "$mainMod, V, exec, ${./scripts/ClipManager.sh}" # Clipboard Manager
 
-                  # Applications/Programs
-                  "$mainMod, Return, exec, $term"
-                  #"$mainMod, T, exec, $term"
-                  "$mainMod, F, exec, $fileManager"
-                  "$mainMod, C, exec, $editor"
-                  "$mainMod, B, exec, $browser"
-                  #"$mainMod SHIFT, S, exec, spotify"
-                  #"$mainMod SHIFT, Y, exec, youtube-music"
-                  "$CONTROL ALT, DELETE, exec, $term -e '${getExe pkgs.btop}'" # System Monitor
-                  "$mainMod CTRL, C, exec, hyprpicker --autocopy --format=hex" # Colour Picker
+                # Screenshot/Screencapture
+                "$mainMod SHIFT, R, exec, ${./scripts/screen-record.sh} a" # Screen Record (area select)
+                "$mainMod CTRL, R, exec, ${./scripts/screen-record.sh} m" # Screen Record (monitor select)
+                "$mainMod, P, exec, ${./scripts/screenshot.sh} s" # drag to snip an area / click on a window to print it
+                "$mainMod CTRL, P, exec, ${./scripts/screenshot.sh} sf" # frozen screen, drag to snip an area / click on a window to print it
+                "$mainMod, print, exec, ${./scripts/screenshot.sh} m" # print focused monitor
+                "$mainMod ALT, P, exec, ${./scripts/screenshot.sh} p" # print all monitor outputs
 
-                  #"$mainMod, A, exec, launcher drun" # launch desktop applications
-                  #"$mainMod, SPACE, exec, launcher drun" # launch desktop applications
-                  "$mainMod, SPACE, exec, noctalia-shell ipc call launcher toggle"
-                  "$mainMod SHIFT, W, exec, launcher wallpaper" # launch wallpaper switcher
-                  #"$mainMod, Z, exec, launcher emoji" # launch emoji picker
-                  #"$mainMod SHIFT, T, exec, launcher tmux" # launch tmux sessions
-                  "$mainMod, G, exec, launcher games" # game launcher
-                  # "$mainMod, tab, exec, launcher window" # switch between desktop applications
-                  # "$mainMod, R, exec, launcher file" # brrwse system files
-                  "$mainMod ALT, K, exec, ${./scripts/keyboardswitch.sh}" # change keyboard layout
-                  #"$mainMod SHIFT, N, exec, swaync-client -t -sw" # swayNC panel
-                  #"$mainMod SHIFT, Q, exec, swaync-client -t -sw" # swayNC panel
-                  "$mainMod ALT, G, exec, ${./scripts/gamemode.sh}" # disable hypr effects for gamemode
-                  "$mainMod, V, exec, ${./scripts/ClipManager.sh}" # Clipboard Manager
-                  # "$mainMod, M, exec, ${./scripts/rofimusic.sh}" # online music
+                # Functional keybinds
+                ",xf86Sleep, exec, systemctl suspend" # Put computer into sleep mode
+                ",XF86AudioMicMute,exec,pamixer --default-source -t" # mute mic
+                ",XF86AudioMute,exec,pamixer -t" # mute audio
+                ",XF86AudioPlay,exec,playerctl play-pause" # Play/Pause media
+                ",XF86AudioPause,exec,playerctl play-pause" # Play/Pause media
+                ",xf86AudioNext,exec,playerctl next" # go to next media
+                ",xf86AudioPrev,exec,playerctl previous" # go to previous media
 
-                  # Screenshot/Screencapture
-                  "$mainMod SHIFT, R, exec, ${./scripts/screen-record.sh} a" # Screen Record (area select)
-                  "$mainMod CTRL, R, exec, ${./scripts/screen-record.sh} m" # Screen Record (monitor select)
-                  "$mainMod, P, exec, ${./scripts/screenshot.sh} s" # drag to snip an area / click on a window to print it
-                  "$mainMod CTRL, P, exec, ${./scripts/screenshot.sh} sf" # frozen screen, drag to snip an area / click on a window to print it
-                  "$mainMod, print, exec, ${./scripts/screenshot.sh} m" # print focused monitor
-                  "$mainMod ALT, P, exec, ${./scripts/screenshot.sh} p" # print all monitor outputs
+                # to switch between windows in a floating workspace
+                "$mainMod, Tab, cyclenext"
+                "$mainMod, Tab, bringactivetotop"
 
-                  # Functional keybinds
-                  ",xf86Sleep, exec, systemctl suspend" # Put computer into sleep mode
-                  ",XF86AudioMicMute,exec,pamixer --default-source -t" # mute mic
-                  ",XF86AudioMute,exec,pamixer -t" # mute audio
-                  ",XF86AudioPlay,exec,playerctl play-pause" # Play/Pause media
-                  ",XF86AudioPause,exec,playerctl play-pause" # Play/Pause media
-                  ",xf86AudioNext,exec,playerctl next" # go to next media
-                  ",xf86AudioPrev,exec,playerctl previous" # go to previous media
+                # Switch workspaces relative to the active workspace with mainMod + CTRL + [←→]
+                "$mainMod CTRL, right, workspace, r+1"
+                "$mainMod CTRL, left, workspace, r-1"
 
-                  # ",xf86AudioNext,exec,${./scripts/MediaCtrl.sh} next" # go to next media
-                  # ",xf86AudioPrev,exec,${./scripts/MediaCtrl.sh} previous" # go to previous media
-                  # ",XF86AudioPlay,exec,${./scripts/MediaCtrl.sh} play-pause" # go to next media
-                  # ",XF86AudioPause,exec,${./scripts/MediaCtrl.sh} play-pause" # go to next media
+                # move to the first empty workspace instantly with mainMod + CTRL + [↓]
+                "$mainMod CTRL, down, workspace, empty"
 
-                  # to switch between windows in a floating workspace
-                  "$mainMod, Tab, cyclenext"
-                  "$mainMod, Tab, bringactivetotop"
+                # Move focus with mainMod + arrow keys
+                "$mainMod, left, movefocus, l"
+                "$mainMod, right, movefocus, r"
+                "$mainMod, up, movefocus, u"
+                "$mainMod, down, movefocus, d"
+                #"ALT, Tab, movefocus, d"
 
-                  # Switch workspaces relative to the active workspace with mainMod + CTRL + [←→]
-                  "$mainMod CTRL, right, workspace, r+1"
-                  "$mainMod CTRL, left, workspace, r-1"
+                # Scroll through existing workspaces with mainMod + scroll
+                "$mainMod, mouse_down, workspace, e+1"
+                "$mainMod, mouse_up, workspace, e-1"
 
-                  # move to the first empty workspace instantly with mainMod + CTRL + [↓]
-                  "$mainMod CTRL, down, workspace, empty"
+                # Move active window around current workspace with mainMod + ALT [←→↑↓]
+                "$mainMod ALT, left, movewindow, l"
+                "$mainMod ALT, right, movewindow, r"
+                "$mainMod ALT, up, movewindow, u"
+                "$mainMod ALT, down, movewindow, d"
 
-                  # Move focus with mainMod + arrow keys
-                  "$mainMod, left, movefocus, l"
-                  "$mainMod, right, movefocus, r"
-                  "$mainMod, up, movefocus, u"
-                  "$mainMod, down, movefocus, d"
-                  #"ALT, Tab, movefocus, d"
+                # Swap active window around current workspace with mainMod + CTRL + ALT [←→↑↓]
+                "$mainMod CTRL ALT, left, swapwindow, l"
+                "$mainMod CTRL ALT, right, swapwindow, r"
+                "$mainMod CTRL ALT, up, swapwindow, u"
+                "$mainMod CTRL ALT, down, swapwindow, d"
 
-                  # Rebuild NixOS with a KeyBind
-                  #"$mainMod, U, exec, $term -e rebuild"
-
-                  # Scroll through existing workspaces with mainMod + scroll
-                  "$mainMod, mouse_down, workspace, e+1"
-                  "$mainMod, mouse_up, workspace, e-1"
-
-                  # Move active window around current workspace with mainMod + ALT [←→↑↓]
-                  "$mainMod ALT, left, movewindow, l"
-                  "$mainMod ALT, right, movewindow, r"
-                  "$mainMod ALT, up, movewindow, u"
-                  "$mainMod ALT, down, movewindow, d"
-
-                  # Swap active window around current workspace with mainMod + CTRL + ALT [←→↑↓]
-                  "$mainMod CTRL ALT, left, swapwindow, l"
-                  "$mainMod CTRL ALT, right, swapwindow, r"
-                  "$mainMod CTRL ALT, up, swapwindow, u"
-                  "$mainMod CTRL ALT, down, swapwindow, d"
-
-                  # Special workspaces (scratchpad)
-                  "$mainMod CTRL, Z, movetoworkspacesilent, special"
-                  "$mainMod SHIFT, Z, movetoworkspace, special"
-                  "$mainMod, Z, togglespecialworkspace,"
-                ]
-                ++ (builtins.concatLists (
-                  builtins.genList (
-                    x:
-                    let
-                      ws =
-                        let
-                          c = (x + 1) / 10;
-                        in
-                        builtins.toString (x + 1 - (c * 10));
-                    in
-                    [
-                      "$mainMod, ${ws}, workspace, ${toString (x + 1)}"
-                      "$mainMod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-                      "$mainMod CTRL, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
-                    ]
-                  ) 10
-                ));
+                # Special workspaces (scratchpad)
+                "$mainMod CTRL, Z, movetoworkspacesilent, special"
+                "$mainMod SHIFT, Z, movetoworkspace, special"
+                "$mainMod, Z, togglespecialworkspace,"
+              ]
+              ++ (builtins.concatLists (
+                builtins.genList (
+                  x:
+                  let
+                    ws =
+                      let
+                        c = (x + 1) / 10;
+                      in
+                      builtins.toString (x + 1 - (c * 10));
+                  in
+                  [
+                    "$mainMod, ${ws}, workspace, ${toString (x + 1)}"
+                    "$mainMod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+                    "$mainMod CTRL, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
+                  ]
+                ) 10
+              ));
               bindm = [
                 # Move/Resize windows with mainMod + LMB/RMB and dragging
                 "$mainMod, mouse:272, movewindow"
@@ -614,27 +440,9 @@ in
               monitor = [
                 # Easily plug in any monitor
                 ",preferred,auto,1"
-
-                # My Monitors (Fine to leave these since i used the serial numbers)
-                #"desc:BNQ BenQ EW277HDR 99J01861SL0,preferred,-1920x0,1"
-                #"desc:BNQ BenQ EL2870U PCK00489SL0,preferred,0x0,2"
-                #"desc:BNQ BenQ xl2420t 99D06760SL0,preferred,1920x-420,1,transform,1" # 5 for fipped
               ];
 
               workspace = ["1,default:true"];
-              #workspace = [
-                # Binds workspaces to my monitors (find desc with: hyprctl monitors)
-                #"1,monitor:desc:BNQ BenQ EL2870U PCK00489SL0,default:true"
-                #"2,monitor:desc:BNQ BenQ EL2870U PCK00489SL0"
-                #"3,monitor:desc:BNQ BenQ EL2870U PCK00489SL0"
-                #"4,monitor:desc:BNQ BenQ EL2870U PCK00489SL0"
-                #"5,monitor:desc:BNQ BenQ EW277HDR 99J01861SL0,default:true"
-                #"6,monitor:desc:BNQ BenQ EW277HDR 99J01861SL0"
-                #"7,monitor:desc:BNQ BenQ EW277HDR 99J01861SL0"
-                #"8,monitor:desc:BNQ BenQ xl2420t 99D06760SL0,default:true"
-                #"9,monitor:desc:BNQ BenQ xl2420t 99D06760SL0"
-                #"10,monitor:desc:BNQ BenQ EL2870U PCK00489SL0"
-              #];
             };
           };
         }
