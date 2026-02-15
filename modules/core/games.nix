@@ -24,7 +24,7 @@
     # prismlauncher
 
     steam-run
-    wineWowPackages.staging
+    wineWow64Packages.staging
     gamescope
   ];
   programs = {
@@ -40,7 +40,7 @@
           "--rt"
           "--expose-wayland"
           # "--immediate-flips" # Tearing and low input lag
-          # "--adaptive-sync"  # G-Sync/FreeSync
+          "--adaptive-sync"  # G-Sync/FreeSync
         ];
       };
     };
