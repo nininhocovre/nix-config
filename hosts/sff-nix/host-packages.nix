@@ -8,7 +8,9 @@
         -enable-features=UseOzonePlatform
         --ozone-platform=wayland
         --ozone-platform-hint=auto
-        --enable-features=WaylandWindowDecorations 
+        --enable-features=WaylandWindowDecorations
+        --use-cmd-decoder=passthrough
+        --enable-features=WaylandLinuxDrmSyncobj,AcceleratedVideoDecodeLinuxZeroCopyGL,AcceleratedVideoDecodeLinuxGL,VaapiOnNvidiaGPUs,AcceleratedVideoEncoder
       '';
     })
     oscar
