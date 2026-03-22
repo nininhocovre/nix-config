@@ -33,6 +33,7 @@ in
     # ../../modules/core/dlna.nix
 
     ../../modules/core/netbird.nix
+    ../../modules/core/docker.nix
 
     # Optional
     # ../../modules/hardware/drives # Automatically mount extra external/internal drives

@@ -48,6 +48,7 @@ in
     mutableUsers = true;
     users.${username} = {
       isNormalUser = true;
+      uid = 1000;
       extraGroups = [
         "wheel" # sudo access
         "input"
