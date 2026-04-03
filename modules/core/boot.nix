@@ -19,7 +19,7 @@
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
       };
-      timeout = null; # Display bootloader indefinitely until user selects OS
+      timeout = 15; # Display bootloader indefinitely until user selects OS
       grub = {
         enable = true;
         device = "nodev";
