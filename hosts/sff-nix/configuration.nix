@@ -11,7 +11,7 @@ in
 
     # Core Modules (Don't change unless you know what you're doing)
     ../../modules/scripts
-    ../../modules/core/boot.nix
+    ./boot.nix
     ../../modules/core/bash.nix
     ../../modules/core/zsh.nix
     ../../modules/core/starship.nix

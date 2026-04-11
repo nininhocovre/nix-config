@@ -33,7 +33,7 @@ in
     # ../../modules/core/dlna.nix
 
     ../../modules/core/netbird.nix
-    ../../modules/core/docker.nix
+    ./docker.nix
 
     # Optional
     # ../../modules/hardware/drives # Automatically mount extra external/internal drives
@@ -46,7 +46,7 @@ in
     ../../modules/programs/cli/tmux
     ../../modules/programs/cli/direnv
     ../../modules/programs/cli/lazygit
-    ../../modules/programs/cli/cava
+    # ../../modules/programs/cli/cava
     ../../modules/programs/cli/fastfetch
     ../../modules/programs/cli/btop
     # ../../modules/programs/media/discord
