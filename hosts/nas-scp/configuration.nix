@@ -59,6 +59,6 @@ in
     # ../../modules/programs/misc/thunar
     #../../modules/programs/misc/lact # GPU fan, clock and power configuration
     # ../../modules/programs/3dprint
-  ]
+  ];
   # ++ lib.optional (vars.games == true) ../../modules/core/games.nix;
 }

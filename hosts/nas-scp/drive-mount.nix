@@ -1,16 +1,16 @@
 { config, ... }:
 {
-  # fileSystems."/" = {
-  #   options = [ "subvol=@root" "noatime" "compress=zstd:3" "ssd" "space_cache=v2" "autodefrag"];
-  # };
+  fileSystems."/" = {
+    options = [ "subvol=root" "noatime" "compress=zstd:3" "ssd" "space_cache=v2"];
+  };
 
-  # fileSystems."/home" = {
-  #   options = [ "subvol=@home" "noatime" "compress=zstd:3" "ssd" "space_cache=v2" "autodefrag"];
-  # };
+  fileSystems."/home" = {
+    options = [ "subvol=home" "noatime" "compress=zstd:3" "ssd" "space_cache=v2"];
+  };
 
-  # fileSystems."/nix" = {
-  #   options = [ "subvol=@nix" "noatime" "compress=zstd:3" "ssd" "space_cache=v2" "autodefrag"];
-  # };
+  fileSystems."/nix" = {
+    options = [ "subvol=nix" "noatime" "compress=zstd:3" "ssd" "space_cache=v2"];
+  };
 
   # fileSystems."/mnt/dados" = {
   #   device = "/dev/disk/by-uuid/145a3fdb-0b59-4001-80f5-1839494583c0";
