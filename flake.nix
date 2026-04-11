@@ -105,6 +105,7 @@
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
       nixosConfigurations = {
         sff-nix = mkHost "sff-nix";
+        nas-scp = mkHost "nas-scp";
       };
     };
 }
