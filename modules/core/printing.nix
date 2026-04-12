@@ -4,15 +4,17 @@
     printing = {
       enable = true;
       drivers = [
-        # pkgs.hplipWithPlugin
+        pkgs.cups-filters
+        pkgs.cups-browsed
+        pkgs.brlaser
       ];
     };
-    # avahi = {
-    #   enable = true;
-    #   nssmdns4 = true;
-    #   openFirewall = true;
-    # };
-    # ipp-usb.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+    ipp-usb.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
