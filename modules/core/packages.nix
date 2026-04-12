@@ -48,19 +48,19 @@
     # libsForQt5.qt5.qtgraphicaleffects # Sddm Dependency (Old)
     # libnotify # For Notifications
     # lolcat # Add Colors To Your Terminal Command Output
-    # lshw # Detailed Hardware Information
+    lshw # Detailed Hardware Information
     # mpv # Incredible Video Player
     # ncdu # Disk Usage Analyzer With Ncurses Interface
     # nixfmt-rfc-style # Nix Formatter
     # nwg-displays # configure monitor configs via GUI
     # onefetch # provides zsaneyos build info on current system
-    # pavucontrol # For Editing Audio Levels & Devices
-    # pciutils # Collection Of Tools For Inspecting PCI Devices
+    pavucontrol # For Editing Audio Levels & Devices
+    pciutils # Collection Of Tools For Inspecting PCI Devices
     # picard # For Changing Music Metadata & Getting Cover Art
     # pkg-config # Wrapper Script For Allowing Packages To Get Info On Others
     # rhythmbox # audio player
     # socat # Needed For Screenshots
-    # usbutils # Good Tools For USB Devices
+    usbutils # Good Tools For USB Devices
     # uwsm # Universal Wayland Session Manager (optional must be enabled)
     # v4l-utils # Used For Things Like OBS Virtual Camera
     # warp-terminal # Terminal with AI support build in

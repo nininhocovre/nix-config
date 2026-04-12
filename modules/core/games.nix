@@ -16,6 +16,7 @@
     enable32Bit = true;
   };
   hardware.xpadneo.enable = true;
+  boot.blacklistedKernelModules = [ "hid_nintendo" ];
   environment.systemPackages = with pkgs; [
     lutris
     heroic
