@@ -12,17 +12,13 @@
     options = [ "subvol=nix" "noatime" "compress=zstd:3" "ssd" "space_cache=v2"];
   };
 
-  # fileSystems."/mnt/dados" = {
-  #   device = "/dev/disk/by-uuid/145a3fdb-0b59-4001-80f5-1839494583c0";
-  #   fsType = "btrfs";
-  #   options = [ "subvol=@dados" "nofail" "noatime" "compress=zstd:3" "ssd" "space_cache=v2" "autodefrag" ];
-  # };
+  fileSystems."/mnt/ssd" = {
+    options = [ "noatime" "compress=zstd:3" "ssd" "space_cache=v2"];
+  };
 
-  # fileSystems."/mnt/games" = {
-  #   device = "/dev/disk/by-uuid/145a3fdb-0b59-4001-80f5-1839494583c0";
-  #   fsType = "btrfs";
-  #   options = [ "subvol=@games" "nofail" "noatime" "compress=zstd:3" "ssd" "space_cache=v2" "autodefrag" ];
-  # };
+  fileSystems."/mnt/hdd" = {
+    options = [ "noatime" "compress=zstd:3" "space_cache=v2"];
+  };
 
   zramSwap = {
     enable = true;
@@ -34,7 +30,7 @@
   services.btrfs.autoScrub = {
     enable = true;
     interval = "weekly";
-    fileSystems = [ "/" ];
+    # fileSystems = [ "/" ];
   };
 
   services.fstrim.enable = true;
