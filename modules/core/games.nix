@@ -15,7 +15,9 @@
     enable = true;
     enable32Bit = true;
   };
-  hardware.xpadneo.enable = true;
+  #hardware.xpadneo.enable = true;
+  hardware.xone.enable = true;
+  hardware.xpad-noone.enable = true;
   boot.blacklistedKernelModules = [ "hid_nintendo" ];
   environment.systemPackages = with pkgs; [
     lutris
