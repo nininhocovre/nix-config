@@ -25,7 +25,7 @@ in
     # ../../modules/core/sddm.nix
     ../../modules/core/security.nix
     ../../modules/core/services.nix
-    #../../modules/core/syncthing.nix
+    ../../modules/core/syncthing.nix
     ../../modules/core/system.nix
     ../../modules/core/users.nix
     # ../../modules/core/flatpak.nix
