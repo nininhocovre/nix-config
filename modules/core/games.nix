@@ -20,9 +20,9 @@
   hardware.xpad-noone.enable = true;
   boot.blacklistedKernelModules = [ "hid_nintendo" ];
   environment.systemPackages = with pkgs; [
-    lutris
+    # lutris
     heroic
-    bottles
+    # bottles
     # ryujinx
     # prismlauncher
 
