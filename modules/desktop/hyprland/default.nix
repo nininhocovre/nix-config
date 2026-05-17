@@ -178,7 +178,7 @@ in
                 "col.active_border" = "rgba(ca9ee6ff) rgba(f2d5cfff) 45deg";
                 "col.inactive_border" = "rgba(b4befecc) rgba(6c7086cc) 45deg";
                 resize_on_border = true;
-                layout = "dwindle"; # dwindle or master
+                layout = "master"; # dwindle or master
                 # allow_tearing = true; # Allow tearing for games (use immediate window rules for specific games or all titles)
               };
               decoration = {
@@ -241,7 +241,7 @@ in
                 mouse_move_focuses_monitor = true;
                 swallow_regex = "^(Alacritty|kitty)$";
                 enable_swallow = true;
-                vfr = true; # always keep on
+                # vfr = true; # always keep on
                 vrr = 2; # enable variable refresh rate (0=off, 1=on, 2=fullscreen only, 3 = fullscreen games/media)
               };
               xwayland.force_zero_scaling = false;
@@ -249,7 +249,7 @@ in
                 "3, horizontal, workspace"
               ];
               dwindle = {
-                pseudotile = true;
+                # pseudotile = true;
                 preserve_split = true;
               };
               master = {
