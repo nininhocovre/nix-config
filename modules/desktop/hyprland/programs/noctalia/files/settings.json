@@ -46,7 +46,7 @@
         "barType": "simple",
         "capsuleColorKey": "none",
         "capsuleOpacity": 0.7000000000000001,
-        "contentPadding": 2,
+        "contentPadding": 4,
         "density": "spacious",
         "displayMode": "always_visible",
         "enableExclusionZoneInset": true,
@@ -274,7 +274,7 @@
         "monitorForColors": "",
         "predefinedScheme": "Catppuccin",
         "schedulingMode": "off",
-        "syncGsettings": true,
+        "syncGsettings": false,
         "useWallpaperColors": false
     },
     "controlCenter": {
@@ -454,7 +454,7 @@
     },
     "idle": {
         "customCommands": "[]",
-        "enabled": false,
+        "enabled": true,
         "fadeDuration": 5,
         "lockCommand": "",
         "lockTimeout": 660,
