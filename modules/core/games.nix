@@ -4,13 +4,13 @@
   ...
 }:
 {
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "steam"
-      "steam-original"
-      "steam-run"
-    ];
+  # nixpkgs.config.allowUnfreePredicate =
+    # pkg:
+    # builtins.elem (lib.getName pkg) [
+    #   "steam"
+    #   "steam-original"
+    #   "steam-run"
+    # ];
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -28,7 +28,7 @@
 
     steam-run
     wineWow64Packages.staging
-    gamescope
+    # gamescope
   ];
   programs = {
     gamemode.enable = true;
@@ -49,7 +49,7 @@
     };
     gamescope = {
       enable = true;
-      capSysNice = true;
+      # capSysNice = true;
       package = pkgs.gamescope;
       args = [
         "--rt"
