@@ -1,6 +1,6 @@
 {
   self,
-  inputs,
+  # inputs,
   host,
   pkgs,
   ...
@@ -15,9 +15,9 @@ let
     ;
 in
 {
-  imports = [ inputs.nix-index-database.nixosModules.nix-index ];
+  # imports = [ inputs.nix-index-database.nixosModules.nix-index ];
   programs = {
-    nix-index-database.comma.enable = true;
+    # nix-index-database.comma.enable = true;
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;

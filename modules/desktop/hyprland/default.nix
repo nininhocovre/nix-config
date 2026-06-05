@@ -22,10 +22,10 @@ in
     ./programs/wlogout
     #./programs/rofi
     ./programs/hypridle
-    ./programs/hyprlock
+    # ./programs/hyprlock  NEED MIGRATE
     #./programs/swaync
     # ./programs/dunst
-    ./programs/noctalia
+    # ./programs/noctalia  NEED MIGRATE
   ];
 
   nix.settings = {
