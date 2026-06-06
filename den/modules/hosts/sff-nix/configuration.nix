@@ -22,24 +22,23 @@
       [
         inputs.self.modules.nixos.base
         inputs.self.modules.nixos.boot
-        inputs.self.modules.nixos.print3d
         inputs.self.modules.nixos.sffNixHardware
 
         # Core Modules (Don't change unless you know what you're doing)
         # ../../../../modules/scripts  NEED MIGRATE
         # ../../../../modules/core/bash.nix  NEED MIGRATE
-        # ../../../../modules/core/zsh.nix  NEED MIGRATE
+        # inputs.self.modules.homeManager.zsh
         # ../../../../modules/core/starship.nix  NEED MIGRATE
-        ../../../../modules/core/fonts.nix
-        ../../../../modules/core/hardware.nix
+        inputs.self.modules.nixos.fonts
+        inputs.self.modules.nixos.hardware
         # ../../../../modules/core/network.nix NEED MIGRATE
         #../../modules/core/dns.nix
         # ../../../../modules/core/nh.nix  NEED MIGRATE
-        ../../../../modules/core/packages.nix
-        ../../../../modules/core/printing.nix
+        inputs.self.modules.nixos.packages
+        inputs.self.modules.nixos.printer
         # ../../../../modules/core/sddm.nix  NEED MIGRATE
-        ../../../../modules/core/security.nix
-        ../../../../modules/core/services.nix
+        inputs.self.modules.nixos.security
+        inputs.self.modules.nixos.services
         # ../../../../modules/core/syncthing.nix  NEED MIGRATE
         # ../../../../modules/core/system.nix  NEED MIGRATE
         inputs.self.modules.nixos.system
@@ -48,8 +47,8 @@
         # ../../modules/core/virtualisation.nix
         # ../../modules/core/dlna.nix
 
-        ../../../../modules/core/netbird.nix
-        ../../../../modules/core/docker.nix
+        inputs.self.modules.nixos.netbird
+        inputs.self.modules.nixos.docker
 
         # Optional
         # ../../modules/hardware/drives # Automatically mount extra external/internal drives
@@ -71,10 +70,10 @@
         # ../../modules/programs/media/thunderbird
         # ../../modules/programs/media/obs-studio
         # ../../../../modules/programs/media/mpv  NEED MIGRATE
-        ../../../../modules/programs/misc/tlp
-        ../../../../modules/programs/misc/thunar
+        inputs.self.modules.nixos.cpuScaler
+        inputs.self.modules.nixos.thunar
         #../../modules/programs/misc/lact # GPU fan, clock and power configuration
-        # ../../modules/programs/3dprint
+        inputs.self.modules.nixos.print3d
       ];
       # ++ lib.optional (vars.games == true) ../../../../modules/core/games.nix;  NEED MIGRATE
 
