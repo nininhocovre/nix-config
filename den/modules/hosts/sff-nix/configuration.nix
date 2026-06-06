@@ -21,15 +21,12 @@
       imports = 
       [
         inputs.self.modules.nixos.base
+        inputs.self.modules.nixos.boot
         inputs.self.modules.nixos.print3d
-        ../../../../hosts/sff-nix/hardware-configuration.nix
-        ../../../../hosts/sff-nix/host-packages.nix
-
-        ../../../../hosts/sff-nix/drive-mount.nix
+        inputs.self.modules.nixos.sffNixHardware
 
         # Core Modules (Don't change unless you know what you're doing)
         # ../../../../modules/scripts  NEED MIGRATE
-        ../../../../hosts/sff-nix/boot.nix
         # ../../../../modules/core/bash.nix  NEED MIGRATE
         # ../../../../modules/core/zsh.nix  NEED MIGRATE
         # ../../../../modules/core/starship.nix  NEED MIGRATE
