@@ -1,6 +1,7 @@
 {
-  config,
+  self,
   inputs,
+  lib,
   ...
 }:
 {
@@ -12,13 +13,14 @@
   };
 
   flake.modules.nixos.sff-nix =
-    { lib, ... }:
-    let
-      vars = import ../../../../hosts/sff-nix/variables.nix;
-    in
+    { self, lib, config, ... }:
+    # let
+    #   vars = config.hostVariables;
+    # in
     {
       imports = 
       [
+        inputs.self.modules.nixos.base
         inputs.self.modules.nixos.print3d
         ../../../../hosts/sff-nix/hardware-configuration.nix
         ../../../../hosts/sff-nix/host-packages.nix
@@ -43,6 +45,7 @@
         ../../../../modules/core/services.nix
         # ../../../../modules/core/syncthing.nix  NEED MIGRATE
         # ../../../../modules/core/system.nix  NEED MIGRATE
+        inputs.self.modules.nixos.system
         # ../../../../modules/core/users.nix  NEED MIGRATE
         # ../../modules/core/flatpak.nix
         # ../../modules/core/virtualisation.nix
@@ -53,7 +56,7 @@
 
         # Optional
         # ../../modules/hardware/drives # Automatically mount extra external/internal drives
-        ../../../../modules/hardware/video/${vars.videoDriver}.nix # Enable gpu drivers defined in variables.nix
+        # ../../../../modules/hardware/video/${config.hostVariables.videoDriver}.nix # Enable gpu drivers defined in variables.nix
         # ../../../../modules/desktop/${vars.desktop} # Set window manager defined in variables.nix  NEED MIGRATE
         # ../../../../modules/programs/terminal/${vars.terminal} # Set terminal defined in variables.nix  NEED MIGRATE
         # ../../../../modules/programs/editor/${vars.editor} # Set editor defined in variables.nix  NEED MIGRATE
@@ -77,5 +80,8 @@
         # ../../modules/programs/3dprint
       ];
       # ++ lib.optional (vars.games == true) ../../../../modules/core/games.nix;  NEED MIGRATE
+
+      nixpkgs.config.allowUnfree = true;
+      system.stateVersion = "25.11"; # Do not change!
     };
 }
