@@ -1,6 +1,6 @@
 { lib, config, pkgs, ... }:
 {
-  flake.modules.nixos.base = {
+  flake.modules.generic.base = {
     imports = [ ../../variables.nix ];
 
     config.hostVariables = lib.mkDefault {

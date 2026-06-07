@@ -16,8 +16,8 @@
     imports = with inputs.self.modules.nixos;
     [
       sffNixHardware
+      inputs.self.modules.generic.base
 
-      base
       boot
       hardware
       users
@@ -48,7 +48,8 @@
       docker
 
       nvidia
-      # ../../../../modules/desktop/${vars.desktop} # Set window manager defined in variables.nix  NEED MIGRATE
+
+      hyprland
 
       kitty
       nixvim # investigate too big
