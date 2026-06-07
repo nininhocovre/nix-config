@@ -31,16 +31,15 @@
         starship
         fonts
         hardware
-        # ../../../../modules/core/network.nix NEED MIGRATE
+        network
         #../../modules/core/dns.nix
-        # ../../../../modules/core/nh.nix  NEED MIGRATE
+        nh
         packages
         printer
-        # ../../../../modules/core/sddm.nix  NEED MIGRATE
+        sddm
         security
         services
-        # ../../../../modules/core/syncthing.nix  NEED MIGRATE
-        # ../../../../modules/core/system.nix  NEED MIGRATE
+        syncthing
         system
         
         # ../../modules/core/flatpak.nix
@@ -52,18 +51,18 @@
 
         # Optional
         # ../../modules/hardware/drives # Automatically mount extra external/internal drives
-        # ../../../../modules/hardware/video/${config.hostVariables.videoDriver}.nix # Enable gpu drivers defined in variables.nix
+        nvidia
         # ../../../../modules/desktop/${vars.desktop} # Set window manager defined in variables.nix  NEED MIGRATE
-        # ../../../../modules/programs/terminal/${vars.terminal} # Set terminal defined in variables.nix  NEED MIGRATE
-        # ../../../../modules/programs/editor/${vars.editor} # Set editor defined in variables.nix  NEED MIGRATE
-        # ../../../../modules/programs/editor/vscode  NEED MIGRATE
-        # ../../../../modules/programs/cli/${vars.tuiFileManager} # Set file-manager defined in variables.nix  NEED MIGRATE
-        # ../../../../modules/programs/cli/tmux  NEED MIGRATE
-        # ../../../../modules/programs/cli/direnv  NEED MIGRATE
+        kitty
+        nixvim # investigate too big
+        vscode
+        yazi
+        tmux
+        direnv
         # ../../../../modules/programs/cli/lazygit   NEED MIGRATE
         # ../../../../modules/programs/cli/cava       NEED MIGRATE  
         # ../../../../modules/programs/cli/fastfetch  NEED MIGRATE
-        # ../../../../modules/programs/cli/btop    NEED MIGRATE
+        btop
         # ../../../../modules/programs/media/discord   NEED MIGRATE
         # ../../../../modules/programs/media/spicetify  NEED MIGRATE
         # ../../modules/programs/media/youtube-music
