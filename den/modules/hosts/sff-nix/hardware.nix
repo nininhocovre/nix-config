@@ -6,49 +6,42 @@
 {
   flake.modules.nixos.sffNixHardware = { self, lib, config, ... }: {
 
-    boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-    boot.initrd.kernelModules = [ "dm-snapshot" ];
-    boot.kernelModules = [ "kvm-intel" ];
-    boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "thunderbolt" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ 
+    "kvm-intel"
+    "coretemp"
+    "nct6775"
+  ];
+  boot.extraModulePackages = [ ];
 
-    fileSystems."/" =
-      { device = "/dev/disk/by-uuid/1a9ff026-9472-457b-9be7-bca31a7244dd";
-        fsType = "btrfs";
-        options = [ "subvol=root" ];
-      };
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/145a3fdb-0b59-4001-80f5-1839494583c0";
+      fsType = "btrfs";
+      options = [ "subvol=@root" ];
+    };
 
-    fileSystems."/home" =
-      { device = "/dev/disk/by-uuid/1a9ff026-9472-457b-9be7-bca31a7244dd";
-        fsType = "btrfs";
-        options = [ "subvol=home" ];
-      };
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/145a3fdb-0b59-4001-80f5-1839494583c0";
+      fsType = "btrfs";
+      options = [ "subvol=@home" ];
+    };
 
-    fileSystems."/nix" =
-      { device = "/dev/disk/by-uuid/1a9ff026-9472-457b-9be7-bca31a7244dd";
-        fsType = "btrfs";
-        options = [ "subvol=nix" ];
-      };
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/145a3fdb-0b59-4001-80f5-1839494583c0";
+      fsType = "btrfs";
+      options = [ "subvol=@nix" ];
+    };
 
-    fileSystems."/boot" =
-      { device = "/dev/disk/by-uuid/12CE-A600";
-        fsType = "vfat";
-        options = [ "fmask=0022" "dmask=0022" ];
-      };
-    
-    fileSystems."/mnt/ssd" =
-      { device = "/dev/disk/by-uuid/c6e3a374-0452-41f9-872e-9f43033e48b2";
-        fsType = "btrfs";
-      };
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/231D-E6D2";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
 
-    fileSystems."/mnt/hdd" =
-      { device = "/dev/disk/by-uuid/6d89c699-2200-4f9b-832d-f5b77b568601";
-        fsType = "btrfs";
-      };
+  swapDevices = [ ];
 
-    swapDevices = [ ];
-
-    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-    hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    hardware.enableRedistributableFirmware = lib.mkDefault true;
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;    hardware.enableRedistributableFirmware = lib.mkDefault true;
   };
 }
