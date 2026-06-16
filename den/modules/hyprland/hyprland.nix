@@ -132,8 +132,8 @@
 
             "nextcloud --background"
             "netbird-ui"
-            "steam -silent"
-            "heroic"
+            "${getExe pkgs.steam} -silent"
+            "${getExe pkgs.heroic}"
             "Enpass -minimize"
           ];
           input = {
