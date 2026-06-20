@@ -1,8 +1,8 @@
-{ inputs, ...}:
+{ inputs, ... }:
 {
   flake.modules.nixos.hyprland = { pkgs, ... }: {
+    imports = [ inputs.self.modules.generic.variables ];
     home-manager.sharedModules = [ inputs.self.modules.homeManager.hyprland ];
-    imports = [ inputs.self.modules.generic.base ];
 
     nix.settings = {
       substituters = [ "https://hyprland.cachix.org" ];
@@ -29,16 +29,21 @@
     };
   };
 
-  flake.modules.homeManager.hyprland = 
-    { config, pkgs, lib, ... }:
+  flake.modules.homeManager.hyprland =
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     let
       inherit (lib) getExe getExe';
       vars = config.hostVariables;
     in
     {
       imports = with inputs.self.modules.homeManager; [
-        inputs.self.modules.generic.base
-        
+        inputs.self.modules.generic.sff-nix # TODO need more generic constants
+
         catppuccin-light
         wlogout
         hypridle
@@ -423,7 +428,7 @@
             ",preferred,auto,1"
           ];
 
-          workspace = ["1,default:true"];
+          workspace = [ "1,default:true" ];
         };
       };
     };

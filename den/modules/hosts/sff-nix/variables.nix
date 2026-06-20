@@ -1,7 +1,12 @@
-{ lib, config, pkgs, ... }:
 {
-  flake.modules.generic.base = {
-    imports = [ ../../variables.nix ];
+  lib,
+  config,
+  inputs,
+  ...
+}:
+{
+  flake.modules.generic.sff-nix = {
+    imports = [ inputs.self.modules.generic.variables ];
 
     config.hostVariables = lib.mkDefault {
       username = "nininho"; # auto-set with install.sh, live-install.sh, and rebuild scripts.

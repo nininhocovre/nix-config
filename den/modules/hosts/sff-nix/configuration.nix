@@ -13,10 +13,9 @@
   };
 
   flake.modules.nixos.sff-nix = {
-    imports = with inputs.self.modules.nixos;
-    [
+    imports = with inputs.self.modules.nixos; [
       sffNixHardware
-      inputs.self.modules.generic.base
+      inputs.self.modules.generic.sff-nix
 
       boot
       hardware
@@ -37,7 +36,7 @@
       fonts
 
       network
-      syncthing        
+      syncthing
       netbird
 
       nh
