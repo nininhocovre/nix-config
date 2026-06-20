@@ -122,7 +122,7 @@
             "NIXPKGS_ALLOW_UNFREE,1"
           ];
           exec-once = [
-            "noctalia-shell"
+            "noctalia"
             "nm-applet --indicator"
             # "wl-clipboard-history -t"
             "${getExe' pkgs.wl-clipboard "wl-paste"} --type text --watch cliphist store" # clipboard store text data
@@ -328,7 +328,7 @@
             "$CONTROL ALT, DELETE, exec, $term -e '${getExe pkgs.btop}'" # System Monitor
             "$mainMod CTRL, C, exec, hyprpicker --autocopy --format=hex" # Colour Picker
 
-            "$mainMod, SPACE, exec, noctalia-shell ipc call launcher toggle"
+            "$mainMod, SPACE, exec, noctalia msg panel-toggle launcher"
             "$mainMod, G, exec, launcher games" # game launcher
             # "$mainMod ALT, G, exec, ${./scripts/gamemode.sh}" # disable hypr effects for gamemode
             # "$mainMod, V, exec, ${./scripts/ClipManager.sh}" # Clipboard Manager
