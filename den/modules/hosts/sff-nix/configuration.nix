@@ -44,8 +44,6 @@
       printer
       print3d
 
-      docker
-
       nvidia
 
       hyprland

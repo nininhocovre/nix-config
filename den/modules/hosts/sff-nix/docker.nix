@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.docker = {
+  flake.modules.nixos.sff-nix = {
     virtualisation = {
       docker = {
         enable = true;
@@ -7,12 +7,12 @@
       };
       oci-containers = {
         backend = "docker";
-        
+
         containers = {
           arcane = {
             image = "ghcr.io/getarcaneapp/arcane:latest";
             ports = [ "3552:3552" ];
-            volumes = [ 
+            volumes = [
               "/var/run/docker.sock:/var/run/docker.sock"
               "/home/nininho/docker/arcane:/app/data"
               "/home/nininho/docker/projects:/home/nininho/docker/projects"
