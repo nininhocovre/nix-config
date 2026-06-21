@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.sff-nix = {pkgs, ... }: {
+  flake.modules.nixos.sff-nix = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
       (vivaldi.override {
         proprietaryCodecs = true;

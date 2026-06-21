@@ -1,4 +1,4 @@
-{ inputs, ...}:
+{ inputs, ... }:
 {
   flake.modules.nixos.yazi = {
     home-manager.sharedModules = [ inputs.self.modules.homeManager.yazi ];

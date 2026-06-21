@@ -1,4 +1,4 @@
-{ inputs, ...}:
+{ inputs, ... }:
 {
   flake.modules.nixos.cava = {
     home-manager.sharedModules = [ inputs.self.modules.homeManager.cava ];

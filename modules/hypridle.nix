@@ -1,4 +1,4 @@
-{ inputs, ...}:
+{ inputs, ... }:
 {
   # flake.modules.nixos.hypridle = {
   #   home-manager.sharedModules = [ inputs.self.modules.homeManager.hypridle ];

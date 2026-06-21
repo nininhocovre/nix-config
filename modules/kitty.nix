@@ -1,4 +1,4 @@
-{ inputs, ...}:
+{ inputs, ... }:
 {
   flake.modules.nixos.kitty = {
     home-manager.sharedModules = [ inputs.self.modules.homeManager.kitty ];

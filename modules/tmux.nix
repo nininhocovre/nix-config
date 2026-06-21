@@ -1,4 +1,4 @@
-{ inputs, ...}:
+{ inputs, ... }:
 {
   flake.modules.nixos.tmux = {
     home-manager.sharedModules = [ inputs.self.modules.homeManager.tmux ];

@@ -1,9 +1,4 @@
-{
-  lib,
-  # config,
-  # pkgs,
-  ...
-}:
+{ lib, ... }:
 {
   flake.modules.generic.variables = {
     options.hostVariables = {

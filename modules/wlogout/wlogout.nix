@@ -1,4 +1,4 @@
-{ inputs, ...}:
+{ inputs, ... }:
 {
   # flake.modules.nixos.wlogout = {
   #   home-manager.sharedModules = [ inputs.self.modules.homeManager.wlogout ];

@@ -1,4 +1,4 @@
-{ inputs, ...}:
+{ inputs, ... }:
 {
   flake.modules.nixos.direnv = {
     home-manager.sharedModules = [ inputs.self.modules.homeManager.direnv ];

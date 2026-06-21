@@ -1,4 +1,4 @@
-{ inputs, ...}:
+{ inputs, ... }:
 {
   # flake.modules.nixos.catppuccin-light = {
   #   home-manager.sharedModules = [ inputs.self.modules.homeManager.catppuccin-light ];

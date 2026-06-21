@@ -1,4 +1,4 @@
-{ inputs, ...}:
+{ inputs, ... }:
 {
   flake.modules.nixos.zsh = {
     home-manager.sharedModules = [ inputs.self.modules.homeManager.zsh ];

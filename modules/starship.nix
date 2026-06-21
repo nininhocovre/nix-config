@@ -1,4 +1,4 @@
-{ inputs, ...}:
+{ inputs, ... }:
 {
   flake.modules.nixos.starship = {
     home-manager.sharedModules = [ inputs.self.modules.homeManager.starship ];

@@ -1,10 +1,10 @@
-{ inputs, ...}:
+{ inputs, ... }:
 {
   flake.modules.nixos.spotify = {
     home-manager.sharedModules = [ inputs.self.modules.homeManager.spotify ];
   };
 
-  flake.modules.homeManager.spotify = 
+  flake.modules.homeManager.spotify =
     { pkgs, ... }:
     let
       spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};

@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  flake.modules.nixos.boot = {pkgs, ...}: {
+  flake.modules.nixos.boot = { pkgs, ... }: {
     boot = {
       supportedFilesystems = [
         "ntfs"

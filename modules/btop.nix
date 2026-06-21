@@ -1,4 +1,4 @@
-{ inputs, ...}:
+{ inputs, ... }:
 {
   flake.modules.nixos.btop = {
     home-manager.sharedModules = [ inputs.self.modules.homeManager.btop ];

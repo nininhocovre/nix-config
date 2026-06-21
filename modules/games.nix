@@ -1,4 +1,4 @@
-{ inputs, ...}:
+{ inputs, ... }:
 {
   flake.modules.nixos.games = { pkgs, ... }: {
     home-manager.sharedModules = [ inputs.self.modules.homeManager.games ];
@@ -34,7 +34,7 @@
             "--rt"
             "--expose-wayland"
             # "--immediate-flips" # Tearing and low input lag
-            "--adaptive-sync"  # G-Sync/FreeSync
+            "--adaptive-sync" # G-Sync/FreeSync
           ];
         };
       };
