@@ -7,7 +7,7 @@
   flake.modules.homeManager.noctalia =
     { config, pkgs, ... }:
     let
-      filePath = "/home/nininho/nix-config/modules/desktop/hyprland/programs/noctalia/files";
+      filePath = "/home/nininho/nix-config/modules/noctalia/files";
       configSrc = config.lib.file.mkOutOfStoreSymlink filePath;
     in
     {
