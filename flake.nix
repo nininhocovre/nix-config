@@ -66,57 +66,5 @@
     };
   };
 
-  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./den);
-
-  # outputs =
-  #   {
-  #     self,
-  #     nixpkgs,
-  #     # flake-parts,
-  #     ...
-  #   }@inputs:
-  #   let
-  #     inherit (self) outputs;
-  #     systems = [
-  #       "x86_64-linux"
-  #       "aarch64-linux"
-  #     ];
-  #     forAllSystems = nixpkgs.lib.genAttrs systems;
-  #     # mkHost =
-  #     #   host:
-  #     #   nixpkgs.lib.nixosSystem {
-  #     #     # inherit system;
-  #     #     system = forAllSystems (system: system);
-  #     #     modules = [
-  #     #       ./hosts/${host}/configuration.nix
-  #     #     ];
-  #     #     specialArgs = {
-  #     #       inherit
-  #     #         self
-  #     #         inputs
-  #     #         outputs
-  #     #         host
-  #     #         flake-parts
-  #     #         ;
-  #     #     };
-  #     #   };
-  #     # mkNixos = system: name: {
-  #     #   ${name} = inputs.nixpkgs.lib.nixosSystem {
-  #     #     modules = [
-  #     #       inputs.self.modules.nixos.${name}
-  #     #       { nixpkgs.hostPlatform = inputs.nixpkgs.lib.mkDefault system; }
-  #     #     ];
-  #     #   };
-  # # };
-  #   in
-  #   {
-  #     # templates = import ./dev-shells;
-  #     # formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
-  #     # nixosConfigurations = {
-  #     #   # sff-nix = mkHost "sff-nix";
-  #     #   nas-scp = mkHost "nas-scp";
-  #     # };
-  #     inputs.flake-parts.lib.mkFlake = (inputs.import-tree ./den);
-  #     # flake.nixosConfigurations.sff-nix = mkNixos "x86_64-linux" "sff-nix";
-  #   };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }
