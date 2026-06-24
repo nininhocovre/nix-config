@@ -2,9 +2,9 @@
 
 local browser = "vivaldi --enable-features=UseOzonePlatform --ozone-platform=wayland"
 local editor = "code --disable-gpu"
+local term = "kitty"
 local fileManager = term .. " --class \"tuiFileManager\" -e yazi"
 local mainMod = "SUPER"
-local term = "/nix/store/pdhdg4bm1l14alah1ay4rwd3g7f6l0pd-kitty-0.47.1/bin/kitty"
 hl.curve("linear", { type = "bezier", points = { { 0, 0 }, { 1, 1 } } })
 hl.curve("md3_standard", { type = "bezier", points = { { 0.2, 0 }, { 0, 1 } } })
 hl.curve("md3_decel", { type = "bezier", points = { { 0.05, 0.7 }, { 0.1, 1 } } })
@@ -62,9 +62,9 @@ hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(term))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(editor))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
-hl.bind(CONTROL .. " + ALT + DELETE", hl.dsp.exec_cmd(term .. " -e '/nix/store/d2a48mxsm97f6p63yzrs8h50xp9ifcqj-btop-1.4.7/bin/btop'"))
+hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd(term .. " -e '/nix/store/d2a48mxsm97f6p63yzrs8h50xp9ifcqj-btop-1.4.7/bin/btop'"))
 hl.bind(mainMod .. " + CTRL + C", hl.dsp.exec_cmd("hyprpicker --autocopy --format=hex"))
-hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("noctalia-shell ipc call launcher toggle"))
+hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
 hl.bind(mainMod .. " + G", hl.dsp.exec_cmd("launcher games"))
 hl.bind("xf86Sleep", hl.dsp.exec_cmd("systemctl suspend"))
 hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("pamixer --default-source -t"))
@@ -141,7 +141,7 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize())
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_TYPE", "wayland")
--- TODO: manual review — malformed env on line 148: GDK_BACKEND,wayland,x11,*
+hl.env("GDK_BACKEND","wayland,x11,*")
 hl.env("NIXOS_OZONE_WL", "1")
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "wayland")
 hl.env("MOZ_ENABLE_WAYLAND", "1")
@@ -653,17 +653,20 @@ hl.config({
 })
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("/nix/store/ai8mmqghspvnhv2jz12pfg6b6dqmg3b3-dbus-1.16.2/bin/dbus-update-activation-environment --systemd --all && systemctl --user stop hyprland-session.target && systemctl --user start hyprland-session.target")
-    hl.exec_cmd("noctalia-shell")
+    -- hl.exec_cmd("dbus-update-activation-environment --systemd --all && systemctl --user stop hyprland-session.target && systemctl --user start hyprland-session.target")
+ 
+    hl.exec_cmd("noctalia")
     hl.exec_cmd("nm-applet --indicator")
-    hl.exec_cmd("/nix/store/vg8g4zbkx0qbxzpfb4mldlcpqwzfvsr7-wl-clipboard-2.3.0/bin/wl-paste --type text --watch cliphist store")
-    hl.exec_cmd("/nix/store/vg8g4zbkx0qbxzpfb4mldlcpqwzfvsr7-wl-clipboard-2.3.0/bin/wl-paste --type image --watch cliphist store")
+ 
+    hl.exec_cmd("wl-paste --type text --watch cliphist store")
+    hl.exec_cmd("wl-paste --type image --watch cliphist store")
     hl.exec_cmd("rm '$XDG_CACHE_HOME/cliphist/db'")
     hl.exec_cmd("polkit-agent-helper-1")
+
     hl.exec_cmd("nextcloud --background")
     hl.exec_cmd("netbird-ui")
-    hl.exec_cmd("/nix/store/khvj4lqxwpc9m9py0irjf6ishhscq66x-steam-1.0.0.85/bin/steam -silent")
-    hl.exec_cmd("/nix/store/q0d60wh8ibkzr8l1ixqvhfkm7nnxi26v-heroic-2.22.0/bin/heroic")
+    hl.exec_cmd("steam -silent")
+    hl.exec_cmd("heroic")
     hl.exec_cmd("Enpass -minimize")
 end)
 
