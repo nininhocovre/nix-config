@@ -7,7 +7,7 @@
   flake.modules.homeManager.hyprlock =
     { config, ... }:
     let
-      hyprlockWallpaper = config.hostVariables.hyprlockWallpaper;
+      hyprlockWallpaper = "train-sideview.webp";
     in
     {
       programs.hyprlock = {

@@ -7,7 +7,7 @@
       ...
     }:
     let
-      sddmTheme = config.hostVariables.sddmTheme;
+      sddmTheme = "astronaut";
       sddm-astronaut = pkgs.sddm-astronaut.override {
         embeddedTheme = "${sddmTheme}";
         themeConfig =

@@ -15,7 +15,6 @@
   flake.modules.nixos.sff-nix = {
     imports = with inputs.self.modules.nixos; [
       sffNixHardware
-      inputs.self.modules.generic.sff-nix
 
       boot
       hardware
@@ -70,6 +69,8 @@
 
       games
     ];
+
+    networking.hostName = "sff-nix";
 
     nixpkgs.config.allowUnfree = true;
     system.stateVersion = "25.11"; # Do not change!

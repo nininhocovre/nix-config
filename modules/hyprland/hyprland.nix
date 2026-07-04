@@ -1,7 +1,6 @@
 { inputs, ... }:
 {
   flake.modules.nixos.hyprland = { pkgs, ... }: {
-    imports = [ inputs.self.modules.generic.variables ];
     home-manager.sharedModules = [ inputs.self.modules.homeManager.hyprland ];
 
     nix.settings = {
@@ -36,14 +35,8 @@
       lib,
       ...
     }:
-    let
-      inherit (lib) getExe getExe';
-      vars = config.hostVariables;
-    in
     {
       imports = with inputs.self.modules.homeManager; [
-        inputs.self.modules.generic.sff-nix # TODO need more generic constants
-
         catppuccin-light
         wlogout
         hypridle

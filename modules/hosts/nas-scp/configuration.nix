@@ -15,7 +15,6 @@
   flake.modules.nixos.nas-scp = {
     imports = with inputs.self.modules.nixos; [
       nasScpHardware
-      inputs.self.modules.generic.nas-scp
 
       # ../../../../modules/scripts  NEED MIGRATE
 
@@ -51,6 +50,8 @@
       fastfetch
       btop
     ];
+
+    networking.hostName = "nas-scp";
 
     nixpkgs.config.allowUnfree = true;
     system.stateVersion = "25.11"; # Do not change!

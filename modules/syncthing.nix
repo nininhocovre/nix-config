@@ -2,7 +2,7 @@
   flake.modules.nixos.syncthing =
     { config, ... }:
     let
-      username = config.hostVariables.username;
+      username = "nininho";
     in
     {
       services.syncthing = {

@@ -24,8 +24,8 @@
         excludePackages = with pkgs; [ xterm ];
         exportConfiguration = true; # Make sure /etc/X11/xkb is populated so localectl works correctly
         xkb = {
-          layout = "${vars.kbdLayout}";
-          variant = "${vars.kbdVariant}";
+          layout = "us";
+          variant = "intl";
         };
       };
       nix = {
@@ -62,18 +62,18 @@
         };
         optimise.automatic = true;
       };
-      time.timeZone = "${vars.timezone}";
-      i18n.defaultLocale = "${vars.locale}";
+      time.timeZone = "America/Sao_Paulo";
+      i18n.defaultLocale = "en_US.UTF-8";
       i18n.extraLocaleSettings = {
-        LC_ADDRESS = "${vars.locale}";
-        LC_IDENTIFICATION = "${vars.locale}";
-        LC_MEASUREMENT = "${vars.locale}";
-        LC_MONETARY = "${vars.locale}";
-        LC_NAME = "${vars.locale}";
-        LC_NUMERIC = "${vars.locale}";
-        LC_PAPER = "${vars.locale}";
-        LC_TELEPHONE = "${vars.locale}";
-        LC_TIME = "${vars.locale}";
+        LC_ADDRESS = "en_US.UTF-8";
+        LC_IDENTIFICATION = "en_US.UTF-8";
+        LC_MEASUREMENT = "en_US.UTF-8";
+        LC_MONETARY = "en_US.UTF-8";
+        LC_NAME = "en_US.UTF-8";
+        LC_NUMERIC = "en_US.UTF-8";
+        LC_PAPER = "en_US.UTF-8";
+        LC_TELEPHONE = "en_US.UTF-8";
+        LC_TIME = "en_US.UTF-8";
       };
       environment.variables = {
         templates = "${self}/dev-shells";
@@ -88,6 +88,6 @@
         XDG_BIN_HOME = "$HOME/.local/bin";
       };
 
-      console.keyMap = "${vars.consoleKeymap}";
+      console.keyMap = "us-acentos";
     };
 }
