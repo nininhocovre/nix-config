@@ -1,0 +1,15 @@
+hl.on("hyprland.start", function()
+    hl.exec_cmd("noctalia")
+    hl.exec_cmd("nm-applet --indicator")
+ 
+    hl.exec_cmd("wl-paste --type text --watch cliphist store")
+    hl.exec_cmd("wl-paste --type image --watch cliphist store")
+    hl.exec_cmd("rm '$XDG_CACHE_HOME/cliphist/db'")
+    hl.exec_cmd("polkit-agent-helper-1")
+
+    hl.exec_cmd("nextcloud --background")
+    hl.exec_cmd("netbird-ui")
+    hl.exec_cmd("steam -silent")
+    hl.exec_cmd("heroic")
+    hl.exec_cmd("Enpass -minimize")
+end)

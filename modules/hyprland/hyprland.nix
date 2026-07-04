@@ -95,8 +95,27 @@
 
       home.file.".local/share/hypr/stubs".source = "${pkgs.hyprland}/share/hypr/stubs";
 
-      xdg.configFile."hypr/hyprland.lua".source = ./lua/hyprland.lua;
+      # xdg.configFile."hypr/hyprland.lua".source = ./lua/hyprland.lua;
 
+      wayland.windowManager.hyprland = {
+        enable = true;
+        xwayland.enable = true;
+        systemd = {
+          enable = true;
+          variables = [ "--all" ];
+        };
+
+        configType = "lua";
+        extraLuaFiles = {
+          animation = ./lua/animation.lua;
+          autostart = ./lua/autostart.lua;
+          config = ./lua/config.lua;
+          envs = ./lua/envs.lua;
+          keys = ./lua/keys.lua;
+          window_rules = ./lua/window_rules.lua;
+          workspace = ./lua/workspace.lua;
+        };
+      };
       # wayland.windowManager.hyprland = {
       # enable = false;
       # systemd = {
