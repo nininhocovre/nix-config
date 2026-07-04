@@ -1,9 +1,14 @@
 hl.config({
-    animations = {
-        enabled = true,
-    },
-    binds = {
-        workspace_back_and_forth = 0,
+    general = {
+        border_size = 2,
+        col = {
+            active_border = { colors = { "rgba(ca9ee6ff)", "rgba(f2d5cfff)" }, angle = 45 },
+            inactive_border = { colors = { "rgba(b4befecc)", "rgba(6c7086cc)" }, angle = 45 },
+        },
+        gaps_in = 4,
+        gaps_out = 8,
+        layout = "master",
+        resize_on_border = true,
     },
     decoration = {
         blur = {
@@ -24,19 +29,13 @@ hl.config({
     dwindle = {
         preserve_split = true,
     },
+    master = {
+        mfact = 0.60,
+        new_on_top = false,
+        new_status = "slave",
+    },
     ecosystem = {
         no_donation_nag = true,
-    },
-    general = {
-        border_size = 2,
-        col = {
-            active_border = { colors = { "rgba(ca9ee6ff)", "rgba(f2d5cfff)" }, angle = 45 },
-            inactive_border = { colors = { "rgba(b4befecc)", "rgba(6c7086cc)" }, angle = 45 },
-        },
-        gaps_in = 4,
-        gaps_out = 8,
-        layout = "master",
-        resize_on_border = true,
     },
     group = {
         col = {
@@ -55,17 +54,12 @@ hl.config({
         },
         follow_mouse = 1,
         force_no_accel = true,
-        kb_layout = "us,ru",
+        kb_layout = "us,",
         kb_variant = "intl,",
         numlock_by_default = true,
         repeat_delay = 275,
         repeat_rate = 35,
         sensitivity = 0,
-    },
-    master = {
-        mfact = 0.500000,
-        new_on_top = true,
-        new_status = "master",
     },
     misc = {
         disable_hyprland_logo = true,

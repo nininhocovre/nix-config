@@ -8,4 +8,11 @@ hl.monitor({
 hl.workspace_rule({
     workspace = "1",
     default = true,
+    persistent = true
 })
+for i = 2, 5 do
+    hl.workspace_rule({
+        workspace = i,
+        persistent = true
+    })
+end
