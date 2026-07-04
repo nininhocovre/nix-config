@@ -95,8 +95,17 @@ source = "builtin"
 wallpaper_scheme = "m3-content"
 
 [wallpaper]
-directory = "/home/nininho/Pictures"
+directory = "/home/nininho/nix-config/modules/wallpapers"
 transition_on_startup = true
+
+    [wallpaper.default]
+    path = "/home/nininho/nix-config/modules/wallpapers/train-sideview.webp"
+
+    [wallpaper.last]
+    path = "/home/nininho/nix-config/modules/wallpapers/train-sideview.webp"
+
+    [wallpaper.monitors.DP-2]
+    path = "/home/nininho/nix-config/modules/wallpapers/train-sideview.webp"
 
 [widget.active_window]
 capsule = true
