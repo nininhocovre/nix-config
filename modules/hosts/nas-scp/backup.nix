@@ -20,5 +20,7 @@
         Group = "root";
       };
     };
+
+    networking.firewall.allowedTCPPorts = [ 9898 ];
   };
 }
