@@ -33,6 +33,7 @@
               # "--restart=unless-stopped"
               "--net=compose-network"
             ];
+            pull = "newer";
           };
         };
       };
