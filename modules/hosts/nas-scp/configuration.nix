@@ -16,8 +16,6 @@
     imports = with inputs.self.modules.nixos; [
       nasScpHardware
 
-      # ../../../../modules/scripts  NEED MIGRATE
-
       boot
       hardware
       users

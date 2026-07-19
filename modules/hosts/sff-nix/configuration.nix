@@ -26,8 +26,6 @@
       packages
       security
 
-      # ../../../../modules/scripts  NEED MIGRATE
-
       bash
       zsh
       starship
