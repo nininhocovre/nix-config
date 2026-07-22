@@ -20,6 +20,7 @@
       digikam
       sparrow
       vlc
+      stremio-linux-shell
     ];
 
     # programs.coolercontrol.enable = true; # need to configure fan curve
