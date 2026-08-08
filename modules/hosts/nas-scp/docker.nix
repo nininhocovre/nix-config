@@ -4,6 +4,13 @@
       docker = {
         enable = true;
         storageDriver = "btrfs";
+        daemon.settings = {
+          log-driver = "json-file";
+          log-opts = {
+            max-size = "10m";
+            max-file = "5";
+          };
+        };
       };
       oci-containers = {
         backend = "docker";
@@ -32,9 +39,6 @@
             extraOptions = [
               # "--restart=unless-stopped"
               "--net=compose-network"
-              "--log-driver=json-file"
-              "--log-opt=max-size=10m"
-              "--log-opt=max-file=3"
             ];
             pull = "always";
           };
